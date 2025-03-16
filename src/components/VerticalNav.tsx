@@ -53,7 +53,7 @@ const navItems = [
 
 const VerticalNav = () => {
   return (
-    <div className="py-8 px-4 bg-black/30 backdrop-blur-sm">
+    <div className="h-full py-8 px-4 bg-black/30 backdrop-blur-sm">
       <nav className="flex flex-col space-y-6">
         {navItems.map((item, index) => (
           <Link 

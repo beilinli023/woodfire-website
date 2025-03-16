@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -97,7 +98,7 @@ const Index = () => {
       
       <div className="flex flex-row w-full">
         {/* Fixed Sidebar Navigation - 15% width */}
-        <div className="w-[15%] fixed left-0 top-0 h-screen pt-[100vh] z-20">
+        <div className="w-[15%] fixed left-0 top-[80px] h-screen z-20">
           <VerticalNav />
         </div>
         
