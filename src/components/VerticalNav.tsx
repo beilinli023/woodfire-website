@@ -5,22 +5,17 @@ import { Link } from 'react-router-dom';
 
 const navItems = [
   {
-    title: 'TIBETAN',
-    emoji: '🧘',
-    path: '/categories/tibetan'
+    title: 'KEEP HEALTH',
+    emoji: '🧘‍♂️',
+    path: '/categories/health'
   }, 
   {
-    title: 'CRYSTALS & GEMS',
-    emoji: '💎',
-    path: '/categories/crystals'
+    title: 'KEEP LUCKY',
+    emoji: '☘️',
+    path: '/categories/lucky'
   }, 
   {
-    title: 'COLLECTIONS',
-    emoji: '',
-    path: '/collections'
-  }, 
-  {
-    title: 'GIFT',
+    title: 'KEEP MORE',
     emoji: '🌟',
     path: '/gift'
   }, 
@@ -43,11 +38,6 @@ const navItems = [
     title: 'SYMBOL',
     emoji: '',
     path: '/symbol'
-  }, 
-  {
-    title: 'BLESSING',
-    emoji: '',
-    path: '/blessing'
   }
 ];
 
