@@ -9,6 +9,7 @@ import TestimonialSection from '../components/TestimonialSection';
 import InstagramSection from '../components/InstagramSection';
 import Footer from '../components/Footer';
 import ProductGrid from '../components/ProductGrid';
+import VerticalNav from '../components/VerticalNav';
 
 const popularProducts = [
   {
@@ -94,14 +95,25 @@ const Index = () => {
     <div className="min-h-screen bg-black">
       <Navbar />
       <Hero />
-      <FeaturedSection />
-      <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
-      <CategorySection />
-      <ProductGrid title="新品上市" viewAllLink="/products/new" products={newProducts} />
-      <StorySection />
-      <TestimonialSection />
-      <InstagramSection />
-      <Footer />
+      
+      <div className="flex flex-row w-full">
+        {/* Fixed Sidebar Navigation - 15% width */}
+        <div className="w-[15%] fixed left-0 top-0 h-screen pt-[100vh] bg-black/40 backdrop-blur-sm z-20">
+          <VerticalNav />
+        </div>
+        
+        {/* Main Content Area - 85% width, shifted to the right */}
+        <div className="w-[85%] ml-[15%]">
+          <FeaturedSection />
+          <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
+          <CategorySection />
+          <ProductGrid title="新品上市" viewAllLink="/products/new" products={newProducts} />
+          <StorySection />
+          <TestimonialSection />
+          <InstagramSection />
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 };

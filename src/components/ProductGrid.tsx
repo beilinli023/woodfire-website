@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import { Heart, Share2, ShoppingCart } from 'lucide-react';
+import { Heart, Share2, ShoppingCart, Star } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
 
 interface ProductCardProps {
   id: number;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ image, title, price, originalPrice, rating, category }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isSale = originalPrice !== undefined;
 
   return (
     <div 
@@ -28,6 +30,16 @@ const ProductCard = ({ image, title, price, originalPrice, rating, category }: P
           className="h-64 w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        
+        {/* Sale badge */}
+        {isSale && (
+          <Badge 
+            variant="default" 
+            className="absolute top-3 left-3 bg-yellow-500 text-black font-semibold"
+          >
+            Sale
+          </Badge>
+        )}
       </div>
       
       {/* Quick actions */}
@@ -49,7 +61,7 @@ const ProductCard = ({ image, title, price, originalPrice, rating, category }: P
 
       {/* Product info */}
       <div className="p-4">
-        <h3 className="text-lg font-medium text-white">{title}</h3>
+        <h3 className="text-lg font-medium text-white truncate" title={title}>{title}</h3>
         <div className="mt-1">
           <span className="text-white font-bold">{price}</span>
           {originalPrice && (
@@ -57,23 +69,16 @@ const ProductCard = ({ image, title, price, originalPrice, rating, category }: P
           )}
         </div>
         
-        {/* Rating */}
+        {/* Rating - now always visible for the first product */}
         <div className="mt-2 flex items-center">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
-              <svg
+              <Star
                 key={i}
                 className={`h-4 w-4 ${
-                  i < rating ? 'text-yellow-400' : 'text-gray-600'
+                  i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600'
                 }`}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 15.934l-6.18 3.245.987-6.83L.868 7.349l6.695-.976L10 .25l2.438 6.123 6.694.976-4.939 5-1.128 6.83z"
-                />
-              </svg>
+              />
             ))}
           </div>
           <span className="ml-2 text-sm text-gray-400">({Math.floor(Math.random() * 100) + 10})</span>
@@ -95,7 +100,7 @@ const ProductGrid = ({ title, viewAllLink, products }: { title: string, viewAllL
         </a>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}
