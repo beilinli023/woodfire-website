@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import FiveElementsSection from '../components/FiveElementsSection';
 import FeaturedSection from '../components/FeaturedSection';
 import CategorySection from '../components/CategorySection';
 import StorySection from '../components/StorySection';
@@ -104,6 +105,7 @@ const Index = () => {
         
         {/* Main Content Area - 85% width, shifted to the right */}
         <div className="w-[85%] ml-[15%]">
+          <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
           <CategorySection />
