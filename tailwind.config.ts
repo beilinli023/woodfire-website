@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'sans': ['Inter', 'Noto Serif SC', 'sans-serif'],
+				'serif': ['Noto Serif SC', 'serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -52,6 +56,32 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				// Five Elements Colors
+				wood: {
+					DEFAULT: 'hsl(var(--wood-color))',
+					light: '#81c784',
+					dark: '#2e7d32',
+				},
+				fire: {
+					DEFAULT: 'hsl(var(--fire-color))',
+					light: '#f06292',
+					dark: '#c2185b',
+				},
+				earth: {
+					DEFAULT: 'hsl(var(--earth-color))',
+					light: '#ffd54f',
+					dark: '#f9a825',
+				},
+				metal: {
+					DEFAULT: 'hsl(var(--metal-color))',
+					light: '#e0e0e0',
+					dark: '#9e9e9e',
+				},
+				water: {
+					DEFAULT: 'hsl(var(--water-color))',
+					light: '#64b5f6',
+					dark: '#1976d2',
 				},
 			},
 			borderRadius: {
@@ -92,6 +122,14 @@ export default {
         'scale-in': 'scale-in 0.3s ease-out forwards',
         'slide-up': 'slide-up 0.5s ease-out forwards',
         'slide-right': 'slide-right 0.5s ease-out forwards',
+			},
+			backgroundImage: {
+				'gradient-tcm': 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+				'gradient-earth': 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)',
+				'gradient-wood': 'linear-gradient(90deg, hsla(139, 70%, 75%, 1) 0%, hsla(63, 90%, 76%, 1) 100%)',
+				'gradient-fire': 'linear-gradient(90deg, hsla(24, 100%, 83%, 1) 0%, hsla(341, 91%, 68%, 1) 100%)',
+				'gradient-water': 'linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)',
+				'gradient-metal': 'linear-gradient(109.6deg, rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1%)',
 			}
 		}
 	},

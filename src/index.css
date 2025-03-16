@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,6 +7,14 @@
 
 @layer base {
   :root {
+    /* Five Elements inspired colors */
+    --wood-color: 151 70% 40%;     /* Green/Teal for Wood element */
+    --fire-color: 348 83% 47%;     /* Red for Fire element */
+    --earth-color: 35 80% 50%;     /* Yellow/Brown for Earth element */
+    --metal-color: 0 0% 98%;       /* White/Silver for Metal element */
+    --water-color: 214 80% 45%;    /* Blue for Water element */
+
+    /* Maintain existing color scheme but update with five elements influence */
     --background: 0 0% 0%;
     --foreground: 210 40% 98%;
 
@@ -44,10 +52,10 @@
 
   body {
     @apply bg-black text-white font-sans overflow-x-hidden;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Noto Serif SC', sans-serif;
   }
   
-  /* Keyframes for animations */
+  /* Keep existing keyframes and animations */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -63,7 +71,7 @@
     100% { background-position: 1000px 0; }
   }
   
-  /* Animation utilities */
+  /* Keep existing animation utilities */
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
@@ -72,7 +80,7 @@
     animation: scaleIn 0.3s ease-out forwards;
   }
   
-  /* Image hover effects */
+  /* Keep existing image hover effects */
   .image-container {
     overflow: hidden;
     position: relative;
@@ -101,7 +109,7 @@
     opacity: 1;
   }
   
-  /* Custom scrollbar */
+  /* Keep existing custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -119,18 +127,68 @@
     background: #555;
   }
   
-  /* Loading placeholder */
+  /* Keep existing loading placeholder */
   .loading-placeholder {
     background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
     background-size: 1000px 100%;
     animation: shimmer 2s infinite;
     border-radius: var(--radius);
   }
+
+  /* Five Elements Gradients */
+  .wood-gradient {
+    @apply bg-gradient-to-br from-emerald-600 to-teal-500;
+  }
+  
+  .fire-gradient {
+    @apply bg-gradient-to-br from-red-600 to-rose-500;
+  }
+  
+  .earth-gradient {
+    @apply bg-gradient-to-br from-amber-500 to-yellow-400;
+  }
+  
+  .metal-gradient {
+    @apply bg-gradient-to-br from-gray-100 to-slate-200;
+  }
+  
+  .water-gradient {
+    @apply bg-gradient-to-br from-blue-600 to-indigo-500;
+  }
+  
+  /* TCM Specific Styles */
+  .chinese-title {
+    @apply font-serif tracking-wider;
+  }
+  
+  .element-pill {
+    @apply px-3 py-1 text-xs rounded-full font-medium;
+  }
+  
+  .wood-pill {
+    @apply bg-emerald-600 text-white;
+  }
+  
+  .fire-pill {
+    @apply bg-red-600 text-white;
+  }
+  
+  .earth-pill {
+    @apply bg-amber-500 text-black;
+  }
+  
+  .metal-pill {
+    @apply bg-gray-100 text-black;
+  }
+  
+  .water-pill {
+    @apply bg-blue-600 text-white;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-white text-black px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-opacity-80;
+    @apply bg-gradient-to-r from-amber-500 to-yellow-400 text-black px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-opacity-80 hover:shadow-lg;
   }
   
   .btn-outline {
@@ -143,7 +201,7 @@
   
   .section-title:after {
     content: "";
-    @apply absolute bottom-0 left-0 h-0.5 w-16 bg-white;
+    @apply absolute bottom-0 left-0 h-0.5 w-16 bg-amber-500;
   }
   
   .product-card {
