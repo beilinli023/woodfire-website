@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from 'react';
 import { Search, ShoppingCart, Menu, X, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -11,24 +14,24 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent'}`}>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            
+            <Link to="/" className="text-white font-bold text-xl">
+              Logo占位图
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-              首页
+            <Link to="/blessing" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
+              祈福
             </Link>
-            <Link to="/products" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-              产品
-            </Link>
-            <Link to="/about" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-              关于我们
+            <Link to="/culture" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
+              文化
             </Link>
             <Link to="/contact" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
               联系我们
@@ -61,14 +64,11 @@ const Navbar = () => {
       {/* Mobile menu */}
       {isMobileMenuOpen && <div className="md:hidden bg-black/95 animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link to="/" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              首页
+            <Link to="/blessing" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+              祈福
             </Link>
-            <Link to="/products" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              产品
-            </Link>
-            <Link to="/about" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              关于我们
+            <Link to="/culture" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+              文化
             </Link>
             <Link to="/contact" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
               联系我们
@@ -77,4 +77,5 @@ const Navbar = () => {
         </div>}
     </header>;
 };
+
 export default Navbar;
