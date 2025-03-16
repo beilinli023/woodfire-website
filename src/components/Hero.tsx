@@ -9,23 +9,20 @@ const Hero = () => {
     {
       id: 1,
       image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07',
-      title: '探索传统中医五行能量',
-      subtitle: '精选全球顶级五行能量手串与灵性珠宝',
-      element: 'earth',
+      title: '探索世界的奇妙之处',
+      subtitle: '精选全球顶级圣地的灵性珠宝',
     },
     {
       id: 2,
       image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb',
       title: '寻找内心的平静与力量',
-      subtitle: '每一款手串都蕴含着五行能量的平衡',
-      element: 'water',
+      subtitle: '每一款珠宝都蕴含着独特的能量',
     },
     {
       id: 3,
       image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
-      title: '与自然五行共鸣的灵性体验',
-      subtitle: '连接自然元素，找回生命的平衡',
-      element: 'wood',
+      title: '与自然共鸣的灵性体验',
+      subtitle: '连接自然，找回生命的平衡',
     },
   ];
 
@@ -44,17 +41,6 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const getGradientClass = (element) => {
-    switch(element) {
-      case 'wood': return 'from-wood-light to-wood-dark';
-      case 'fire': return 'from-fire-light to-fire-dark';
-      case 'earth': return 'from-earth-light to-earth-dark';
-      case 'metal': return 'from-metal-light to-metal-dark';
-      case 'water': return 'from-water-light to-water-dark';
-      default: return 'from-amber-300 to-amber-600';
-    }
-  };
-
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Slides */}
@@ -72,7 +58,7 @@ const Hero = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold max-w-4xl animate-fade-in bg-gradient-to-r ${getGradientClass(slide.element)} text-transparent bg-clip-text font-serif`}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold max-w-4xl animate-fade-in bg-gradient-to-r from-[#FEF7CD] via-[#FEC6A1] to-[#FDE1D3] text-transparent bg-clip-text">
               {slide.title}
             </h1>
             <p className="mt-4 sm:mt-6 text-xl sm:text-2xl text-white/90 max-w-2xl animate-fade-in" style={{animationDelay: '0.2s'}}>
@@ -81,13 +67,6 @@ const Hero = () => {
             <button className="mt-8 sm:mt-10 btn-primary animate-fade-in" style={{animationDelay: '0.4s'}}>
               立即探索
             </button>
-            <div className="mt-6 flex space-x-3 animate-fade-in" style={{animationDelay: '0.6s'}}>
-              <span className="element-pill wood-pill">木</span>
-              <span className="element-pill fire-pill">火</span>
-              <span className="element-pill earth-pill">土</span>
-              <span className="element-pill metal-pill">金</span>
-              <span className="element-pill water-pill">水</span>
-            </div>
           </div>
         </div>
       ))}
@@ -116,7 +95,7 @@ const Hero = () => {
           <button
             key={index}
             className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide ? 'bg-amber-500' : 'bg-white/50'
+              index === currentSlide ? 'bg-white' : 'bg-white/50'
             }`}
             onClick={() => setCurrentSlide(index)}
           />
