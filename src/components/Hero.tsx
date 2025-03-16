@@ -75,19 +75,23 @@ const Hero = () => {
       {/* Vertical Navigation */}
       <VerticalNav />
 
-      {/* Navigation arrows */}
-      <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 z-30 text-white p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
-        onClick={prevSlide}
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 z-30 text-white p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
-        onClick={nextSlide}
-      >
-        <ChevronRight size={24} />
-      </button>
+      {/* Navigation arrows - moved to right side */}
+      <div className="absolute right-6 md:right-10 lg:right-12 top-1/2 transform -translate-y-1/2 z-30 flex flex-col space-y-3">
+        <button
+          className="text-white p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+          onClick={prevSlide}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          className="text-white p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
 
       {/* Dots */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
