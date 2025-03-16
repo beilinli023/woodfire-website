@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import VerticalNav from './VerticalNav';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -70,6 +71,9 @@ const Hero = () => {
           </div>
         </div>
       ))}
+
+      {/* Vertical Navigation */}
+      <VerticalNav />
 
       {/* Navigation arrows */}
       <button
