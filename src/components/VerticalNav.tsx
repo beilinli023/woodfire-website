@@ -18,26 +18,6 @@ const navItems = [
     title: 'KEEP MORE',
     emoji: '🌟',
     path: '/gift'
-  }, 
-  {
-    title: 'INTENTIONS',
-    emoji: '',
-    path: '/intentions'
-  }, 
-  {
-    title: 'ARTISTS',
-    emoji: '',
-    path: '/artists'
-  }, 
-  {
-    title: 'STYLES',
-    emoji: '',
-    path: '/styles'
-  }, 
-  {
-    title: 'SYMBOL',
-    emoji: '',
-    path: '/symbol'
   }
 ];
 
