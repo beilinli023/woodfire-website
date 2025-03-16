@@ -11,7 +11,7 @@ const navItems = [
   }, 
   {
     title: 'CRYSTALS & GEMS',
-    emoji: '🔮',
+    emoji: '💎',
     path: '/categories/crystals'
   }, 
   {
@@ -21,7 +21,7 @@ const navItems = [
   }, 
   {
     title: 'GIFT',
-    emoji: '🎁',
+    emoji: '🌟',
     path: '/gift'
   }, 
   {
@@ -59,12 +59,12 @@ const VerticalNav = () => {
           <Link 
             key={index} 
             to={item.path} 
-            className="flex items-center text-white/90 hover:text-white font-medium text-sm lg:text-base transition-all duration-300 group"
+            className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
           >
             <span className="flex items-center">
               {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
             </span>
-            {index < navItems.length - 1 && <ChevronRight className="ml-2 opacity-70 group-hover:opacity-100 transition-opacity" />}
+            <ChevronRight className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
           </Link>
         ))}
       </nav>
