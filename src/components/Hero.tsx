@@ -58,7 +58,7 @@ const Hero = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white max-w-4xl animate-fade-in">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold max-w-4xl animate-fade-in bg-gradient-to-r from-[#FEF7CD] via-[#FEC6A1] to-[#FDE1D3] text-transparent bg-clip-text">
               {slide.title}
             </h1>
             <p className="mt-4 sm:mt-6 text-xl sm:text-2xl text-white/90 max-w-2xl animate-fade-in" style={{animationDelay: '0.2s'}}>
