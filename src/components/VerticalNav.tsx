@@ -18,6 +18,11 @@ const navItems = [
     title: 'KEEP MORE',
     emoji: '🌟',
     path: '/gift'
+  },
+  {
+    title: 'CHARITY',
+    emoji: '💎',
+    path: '/charity'
   }
 ];
 
