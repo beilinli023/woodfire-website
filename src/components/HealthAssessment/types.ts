@@ -1,8 +1,10 @@
 
+import { ReactNode } from 'react';
+
 export interface HealthQuestion {
   id: string;
   question: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   options: string[];
 }
 
