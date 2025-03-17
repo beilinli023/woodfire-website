@@ -3,7 +3,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HealthAssessmentCard from './HealthAssessmentCard';
-import FiveElementsCalculator from './FiveElementsCalculator';
+import FiveElementsCalculator from './FiveElementsCalculator/FiveElementsCalculator';
 
 const navItems = [
   {

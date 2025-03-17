@@ -97,14 +97,14 @@ const Index = () => {
       <Navbar />
       <Hero />
       
-      <div className="flex flex-row w-full">
-        {/* Fixed Sidebar Navigation - 15% width */}
-        <div className="w-[15%] fixed left-0 top-[80px] h-screen z-20">
+      <div className="flex flex-col md:flex-row w-full">
+        {/* Fixed Sidebar Navigation - hidden on mobile, 15% width on desktop */}
+        <div className="hidden md:block md:w-[15%] md:fixed md:left-0 md:top-[80px] md:h-screen md:z-20">
           <VerticalNav />
         </div>
         
-        {/* Main Content Area - 85% width, shifted to the right */}
-        <div className="w-[85%] ml-[15%]">
+        {/* Main Content Area - full width on mobile, 85% width and shifted right on desktop */}
+        <div className="w-full md:w-[85%] md:ml-[15%]">
           <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
