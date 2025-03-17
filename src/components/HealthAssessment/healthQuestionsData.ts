@@ -1,6 +1,7 @@
 
-import { Moon, Battery, Brain, Thermometer, Heart } from 'lucide-react';
+import { Moon, Battery } from 'lucide-react';
 import { HealthQuestion, Product } from './types';
+import React from 'react';
 
 export const healthQuestions: HealthQuestion[] = [
   {
@@ -18,19 +19,19 @@ export const healthQuestions: HealthQuestion[] = [
   {
     id: 'stress',
     question: '你感到压力大吗？',
-    icon: <Brain className="h-5 w-5 text-blue-500" />,
+    icon: <Moon className="h-5 w-5 text-blue-500" />,
     options: ['从不', '偶尔', '经常', '总是']
   },
   {
     id: 'headache',
     question: '你经常头痛吗？',
-    icon: <Thermometer className="h-5 w-5 text-red-500" />,
+    icon: <Moon className="h-5 w-5 text-red-500" />,
     options: ['从不', '偶尔', '经常', '总是']
   },
   {
     id: 'digestion',
     question: '你有消化问题吗？',
-    icon: <Heart className="h-5 w-5 text-green-500" />,
+    icon: <Moon className="h-5 w-5 text-green-500" />,
     options: ['从不', '偶尔', '经常', '总是']
   }
 ];

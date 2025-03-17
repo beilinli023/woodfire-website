@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 export interface HealthQuestion {
   id: string;
   question: string;
