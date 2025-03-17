@@ -1,4 +1,5 @@
-import { Moon, Battery, Brain, Thermometer, Heartbeat } from 'lucide-react';
+
+import { Moon, Battery, Brain, Thermometer, Heart } from 'lucide-react';
 import { HealthQuestion, Product } from './types';
 
 export const healthQuestions: HealthQuestion[] = [
@@ -29,7 +30,7 @@ export const healthQuestions: HealthQuestion[] = [
   {
     id: 'digestion',
     question: '你有消化问题吗？',
-    icon: <Heartbeat className="h-5 w-5 text-green-500" />,
+    icon: <Heart className="h-5 w-5 text-green-500" />,
     options: ['从不', '偶尔', '经常', '总是']
   }
 ];
