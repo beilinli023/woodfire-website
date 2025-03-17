@@ -10,7 +10,6 @@ import InstagramSection from '../components/InstagramSection';
 import Footer from '../components/Footer';
 import ProductGrid from '../components/ProductGrid';
 import VerticalNav from '../components/VerticalNav';
-import HealthAssessmentButton from '../components/HealthAssessmentButton';
 
 const popularProducts = [
   {
@@ -105,11 +104,6 @@ const Index = () => {
         
         {/* Main Content Area - full width on mobile, 85% width and shifted right on desktop */}
         <div className="w-full md:w-[85%] md:ml-[15%]">
-          {/* Mobile-only health assessment button */}
-          <div className="block md:hidden p-4">
-            <HealthAssessmentButton />
-          </div>
-          
           <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
