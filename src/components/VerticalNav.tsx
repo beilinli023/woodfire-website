@@ -8,6 +8,16 @@ import HealthAssessmentButton from './HealthAssessmentButton';
 
 const navItems = [
   {
+    title: 'KEEP HEALTH',
+    emoji: '💜',
+    path: '/categories/health'
+  },
+  {
+    title: 'KEEP LUCKY',
+    emoji: '🍀',
+    path: '/categories/lucky'
+  },
+  {
     title: 'KEEP MORE',
     emoji: '🌟',
     path: '/gift'
