@@ -28,7 +28,8 @@ const InputStep: React.FC<InputStepProps> = ({
   const [month, setMonth] = useState<string>(birthDate ? (birthDate.getMonth() + 1).toString() : '');
   const [day, setDay] = useState<string>(birthDate ? birthDate.getDate().toString() : '');
   
-  const [daysInMonth, setDaysInMonth] = useState<number[]>([]);
+  // Changed from number[] to string[] to match the string type in the rest of the component
+  const [daysInMonth, setDaysInMonth] = useState<string[]>([]);
   
   // Generate arrays for years, months
   const years = Array.from({ length: 120 }, (_, i) => (currentYear - i).toString());
@@ -38,6 +39,7 @@ const InputStep: React.FC<InputStepProps> = ({
   useEffect(() => {
     if (year && month) {
       const daysCount = new Date(parseInt(year), parseInt(month), 0).getDate();
+      // Create string array instead of number array
       setDaysInMonth(Array.from({ length: daysCount }, (_, i) => (i + 1).toString()));
     }
   }, [year, month]);
