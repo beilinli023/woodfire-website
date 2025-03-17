@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ProductRecommendation from './ProductRecommendation';
 import { Element, elementProducts, braceletRecommendations } from './fiveElementsData';
+import { HeartPulse } from 'lucide-react';
 
 interface ResultStepProps {
   element: Element;
@@ -12,6 +14,15 @@ interface ResultStepProps {
 const ResultStep: React.FC<ResultStepProps> = ({ element, onAddToCart }) => {
   const recommendedProduct = elementProducts[element];
   const complementaryBracelet = braceletRecommendations.find(b => b.forElement === element);
+
+  // Function to trigger the health assessment dialog
+  const openHealthAssessment = () => {
+    // Find the HealthAssessmentCard dialog trigger and click it
+    const healthAssessmentTrigger = document.querySelector('[data-health-assessment-trigger]');
+    if (healthAssessmentTrigger) {
+      (healthAssessmentTrigger as HTMLElement).click();
+    }
+  };
 
   return (
     <Card>

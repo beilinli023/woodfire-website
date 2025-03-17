@@ -24,7 +24,9 @@ const VerticalNav = () => {
       <nav className="flex flex-col space-y-6">
         {/* Health item with dialog trigger */}
         <div className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group">
-          <HealthAssessmentCard />
+          <span data-health-assessment-trigger>
+            <HealthAssessmentCard />
+          </span>
           <ChevronRight className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
         </div>
         
