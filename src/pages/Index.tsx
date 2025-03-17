@@ -113,9 +113,11 @@ const Index = () => {
           <StorySection />
           <TestimonialSection />
           <InstagramSection />
-          <Footer />
         </div>
       </div>
+      
+      {/* Full width footer */}
+      <Footer />
     </div>
   );
 };
