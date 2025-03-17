@@ -59,7 +59,7 @@ export const braceletRecommendations = [
     description: '增强金属能量，促进清晰思考',
     price: '¥329',
     image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    forElement: 'Metal'
+    forElement: 'Metal' as Element
   },
   {
     id: 202,
@@ -67,7 +67,7 @@ export const braceletRecommendations = [
     description: '增强木元素能量，促进生长与创新',
     price: '¥459',
     image: 'https://images.unsplash.com/photo-1617038260897-43ea1b4a96a8?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    forElement: 'Wood'
+    forElement: 'Wood' as Element
   },
   {
     id: 203,
@@ -75,7 +75,7 @@ export const braceletRecommendations = [
     description: '增强水元素能量，促进智慧与适应性',
     price: '¥399',
     image: 'https://images.unsplash.com/photo-1535632066274-7120a488be91?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    forElement: 'Water'
+    forElement: 'Water' as Element
   },
   {
     id: 204,
@@ -83,7 +83,7 @@ export const braceletRecommendations = [
     description: '增强火元素能量，促进热情与动力',
     price: '¥349',
     image: 'https://images.unsplash.com/photo-1621720911340-0a5371093654?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    forElement: 'Fire'
+    forElement: 'Fire' as Element
   },
   {
     id: 205,
@@ -91,7 +91,7 @@ export const braceletRecommendations = [
     description: '增强土元素能量，促进稳定与耐心',
     price: '¥379',
     image: 'https://images.unsplash.com/photo-1587467512961-120760940315?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    forElement: 'Earth'
+    forElement: 'Earth' as Element
   }
 ];
 
