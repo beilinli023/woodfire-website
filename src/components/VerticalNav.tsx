@@ -3,13 +3,9 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HealthAssessmentCard from './HealthAssessmentCard';
+import FiveElementsCalculator from './FiveElementsCalculator';
 
 const navItems = [
-  {
-    title: 'KEEP LUCKY',
-    emoji: '☘️',
-    path: '/categories/lucky'
-  }, 
   {
     title: 'KEEP MORE',
     emoji: '🌟',
@@ -29,6 +25,12 @@ const VerticalNav = () => {
         {/* Health item with dialog trigger */}
         <div className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group">
           <HealthAssessmentCard />
+          <ChevronRight className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+        </div>
+        
+        {/* Lucky item with dialog trigger */}
+        <div className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group">
+          <FiveElementsCalculator />
           <ChevronRight className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
         </div>
         
