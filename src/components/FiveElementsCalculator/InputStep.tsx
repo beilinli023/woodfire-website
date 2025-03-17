@@ -1,14 +1,9 @@
 
-import React from 'react';
-import { format } from 'date-fns';
-import { Calendar } from '@/components/ui/calendar';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { CalendarIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { chineseHours } from './fiveElementsData';
 
 interface InputStepProps {
@@ -28,6 +23,35 @@ const InputStep: React.FC<InputStepProps> = ({
   onBack, 
   onCalculate 
 }) => {
+  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState<string>(birthDate ? birthDate.getFullYear().toString() : '');
+  const [month, setMonth] = useState<string>(birthDate ? (birthDate.getMonth() + 1).toString() : '');
+  const [day, setDay] = useState<string>(birthDate ? birthDate.getDate().toString() : '');
+  
+  const [daysInMonth, setDaysInMonth] = useState<number[]>([]);
+  
+  // Generate arrays for years, months
+  const years = Array.from({ length: 120 }, (_, i) => (currentYear - i).toString());
+  const months = Array.from({ length: 12 }, (_, i) => (i + 1).toString());
+  
+  // Update days in month when year or month changes
+  useEffect(() => {
+    if (year && month) {
+      const daysCount = new Date(parseInt(year), parseInt(month), 0).getDate();
+      setDaysInMonth(Array.from({ length: daysCount }, (_, i) => (i + 1).toString()));
+    }
+  }, [year, month]);
+  
+  // Update birthDate when year, month, or day changes
+  useEffect(() => {
+    if (year && month && day) {
+      const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      setBirthDate(newDate);
+    } else {
+      setBirthDate(undefined);
+    }
+  }, [year, month, day, setBirthDate]);
+  
   return (
     <Card>
       <CardHeader>
@@ -37,37 +61,58 @@ const InputStep: React.FC<InputStepProps> = ({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="birthdate">出生日期</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !birthDate && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {birthDate ? format(birthDate, "PPP") : <span>选择日期</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={birthDate}
-                onSelect={setBirthDate}
-                initialFocus
-                className={cn("p-3 pointer-events-auto")}
-              />
-            </PopoverContent>
-          </Popover>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="birth-year">出生年份</Label>
+            <Select value={year} onValueChange={setYear}>
+              <SelectTrigger id="birth-year">
+                <SelectValue placeholder="选择年份" />
+              </SelectTrigger>
+              <SelectContent className="max-h-[300px]">
+                {years.map((y) => (
+                  <SelectItem key={y} value={y}>{y}年</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="birth-month">出生月份</Label>
+            <Select value={month} onValueChange={setMonth}>
+              <SelectTrigger id="birth-month">
+                <SelectValue placeholder="选择月份" />
+              </SelectTrigger>
+              <SelectContent>
+                {months.map((m) => (
+                  <SelectItem key={m} value={m}>{m}月</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="birth-day">出生日期</Label>
+            <Select 
+              value={day} 
+              onValueChange={setDay}
+              disabled={!year || !month}
+            >
+              <SelectTrigger id="birth-day">
+                <SelectValue placeholder="选择日期" />
+              </SelectTrigger>
+              <SelectContent>
+                {daysInMonth.map((d) => (
+                  <SelectItem key={d} value={d}>{d}日</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
         
         <div className="space-y-2">
           <Label htmlFor="birthHour">出生时辰</Label>
           <Select value={birthHour} onValueChange={setBirthHour}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full" id="birthHour">
               <SelectValue placeholder="选择时辰" />
             </SelectTrigger>
             <SelectContent>
@@ -90,6 +135,7 @@ const InputStep: React.FC<InputStepProps> = ({
         <Button 
           className="bg-amber-600 hover:bg-amber-700"
           onClick={onCalculate}
+          disabled={!year || !month || !day || !birthHour}
         >
           开始测算
         </Button>
