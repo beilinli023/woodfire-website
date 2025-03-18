@@ -33,21 +33,21 @@ const EmailSubscriptionDialog = ({ open, onOpenChange }: EmailSubscriptionDialog
 
     setIsSubmitting(true);
     
-    // Show lucky animation after submitting
+    // Show lucky animation immediately after validating email
     setTimeout(() => {
       setShowAnimation(true);
-      
-      // Show success message after animation
-      setTimeout(() => {
-        setShowAnimation(false);
-        setShowSuccess(true);
-        
-        // Auto close dialog after success
-        setTimeout(() => {
-          handleClose();
-        }, 3000);
-      }, 2000);
-    }, 500);
+      setIsSubmitting(false);
+    }, 300);
+  };
+
+  const handleAnimationComplete = () => {
+    setShowAnimation(false);
+    setShowSuccess(true);
+    
+    // Auto close dialog after success
+    setTimeout(() => {
+      handleClose();
+    }, 3000);
   };
 
   const handleClose = () => {
@@ -126,7 +126,7 @@ const EmailSubscriptionDialog = ({ open, onOpenChange }: EmailSubscriptionDialog
             </div>
           </>
         ) : showAnimation ? (
-          <LuckyAnimation />
+          <LuckyAnimation onComplete={handleAnimationComplete} />
         ) : (
           <SubscriptionSuccess email={email} />
         )}
