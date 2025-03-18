@@ -53,17 +53,7 @@ const LuckyAnimation = () => {
         <p className="text-lg font-semibold">五行之力将为您带来平衡与和谐...</p>
       </div>
       
-      {/* 添加CSS动画 */}
-      <style jsx>{`
-        @keyframes elementRotate {
-          0% {
-            transform: rotate(0deg) translateY(-80px) rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg) translateY(-80px) rotate(-360deg);
-          }
-        }
-      `}</style>
+      {/* We're removing the style jsx tag and using the global CSS animation from index.css */}
     </div>
   );
 };
