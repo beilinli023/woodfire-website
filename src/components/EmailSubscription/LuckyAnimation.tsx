@@ -13,13 +13,13 @@ const LuckyAnimation = ({ onComplete }: { onComplete?: () => void }) => {
   ];
 
   useEffect(() => {
-    // After one full rotation (8 seconds), trigger the completion callback
+    // After one full rotation (2 seconds), trigger the completion callback
     const timer = setTimeout(() => {
       setIsAnimationComplete(true);
       if (onComplete) {
         onComplete();
       }
-    }, 8000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -29,7 +29,7 @@ const LuckyAnimation = ({ onComplete }: { onComplete?: () => void }) => {
       <div className="relative h-64 w-64">
         {/* 旋转的五行元素 */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative h-48 w-48">
+          <div className="relative h-48 w-48 five-elements-circle">
             {elements.map((element, index) => {
               // 计算每个元素的旋转位置在圆周上均匀分布
               const angle = index * (360 / elements.length);
@@ -43,12 +43,11 @@ const LuckyAnimation = ({ onComplete }: { onComplete?: () => void }) => {
               return (
                 <div 
                   key={element}
-                  className={`absolute ${elementColors[index]} transition-all`}
+                  className={`absolute element-item ${elementColors[index]}`}
                   style={{
                     transform: `translate(${x}px, ${y}px)`,
                     left: '50%',
                     top: '50%',
-                    animation: `circleRotate 8s infinite linear ${index * (8 / elements.length)}s`
                   }}
                 >
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white text-2xl font-bold shadow-lg">
@@ -71,8 +70,6 @@ const LuckyAnimation = ({ onComplete }: { onComplete?: () => void }) => {
       <div className="mt-8 text-center">
         <p className="text-lg font-semibold">五行之力将为您带来平衡与和谐...</p>
       </div>
-      
-      {/* We're removing the style jsx tag and using the global CSS animation from index.css */}
     </div>
   );
 };
