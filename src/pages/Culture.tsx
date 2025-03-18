@@ -54,7 +54,7 @@ const Culture = () => {
               <TempleCard 
                 name="武当山道观" 
                 image="/temple2.jpg"
-                description="武当山是道教名山，被誉为"亘古无双胜境，天下第一仙山"，是道教太和、玄岳两宗的发源地。"
+                description="武当山是道教名山，被誉为'亘古无双胜境，天下第一仙山'，是道教太和、玄岳两宗的发源地。"
                 location="湖北省十堰市丹江口市武当山特区"
               />
               <TempleCard 
@@ -66,7 +66,7 @@ const Culture = () => {
               <TempleCard 
                 name="茅山道观" 
                 image="/temple4.jpg"
-                description="茅山道观是道教上清派的发源地，自古以来被誉为"第一福地，第八洞天"。"
+                description="茅山道观是道教上清派的发源地，自古以来被誉为'第一福地，第八洞天'。"
                 location="江苏省句容市茅山风景区"
               />
             </div>
