@@ -13,13 +13,13 @@ const LuckyAnimation = ({ onComplete }: { onComplete?: () => void }) => {
   ];
 
   useEffect(() => {
-    // After one full rotation (2 seconds), trigger the completion callback
+    // After one full rotation (3 seconds), trigger the completion callback
     const timer = setTimeout(() => {
       setIsAnimationComplete(true);
       if (onComplete) {
         onComplete();
       }
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
