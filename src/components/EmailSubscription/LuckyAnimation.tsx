@@ -50,7 +50,7 @@ const LuckyAnimation = ({ onComplete }: { onComplete?: () => void }) => {
                     top: '50%',
                   }}
                 >
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white text-2xl font-bold shadow-lg">
+                  <div className="text-3xl font-bold">
                     {element}
                   </div>
                 </div>
