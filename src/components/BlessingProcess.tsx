@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Image, Video, Temple } from 'lucide-react';
+import { Image, Video, Building } from 'lucide-react';
 
 const BlessingProcess = () => {
   return (
@@ -17,7 +17,7 @@ const BlessingProcess = () => {
         <Tabs defaultValue="steps">
           <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="steps" className="flex items-center gap-2">
-              <Temple className="h-4 w-4" /> 开光步骤
+              <Building className="h-4 w-4" /> 开光步骤
             </TabsTrigger>
             <TabsTrigger value="photos" className="flex items-center gap-2">
               <Image className="h-4 w-4" /> 图片展示
