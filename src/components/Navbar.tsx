@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from 'react';
-import { Search, ShoppingCart, Menu, X, User } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AuthDialog from './auth/AuthDialog';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // For demo purposes
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,9 +51,7 @@ const Navbar = () => {
                 0
               </span>
             </button>
-            <button className="text-white p-2 hover:text-gray-300 transition-colors">
-              <User size={20} />
-            </button>
+            <AuthDialog />
             
             {/* Mobile menu button */}
             <button className="md:hidden text-white p-2 hover:text-gray-300 transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
