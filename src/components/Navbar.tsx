@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { Search, ShoppingCart, Menu, X } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
+import { ShoppingCart as ShoppingCartIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AuthDialog from './auth/AuthDialog';
 import ShoppingCart from './cart/ShoppingCart';
@@ -53,7 +54,7 @@ const Navbar = () => {
                 className="text-white p-2 hover:text-gray-300 transition-colors relative"
                 onClick={() => setIsCartOpen(true)}
               >
-                <ShoppingCart size={20} />
+                <ShoppingCartIcon size={20} />
                 <span className="absolute top-0 right-0 h-4 w-4 rounded-full bg-white text-black text-xs flex items-center justify-center">
                   {getTotalItems()}
                 </span>
