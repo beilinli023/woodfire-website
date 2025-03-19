@@ -89,29 +89,31 @@ const FeaturedSection = () => {
         </a>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="col-span-1 md:col-span-2 mb-6">
+      <div className="flex flex-col space-y-12">
+        <div>
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">香方手串制作过程</h3>
-          <div className="w-full" style={{ height: "500px" }}>
+          <div className="relative w-full rounded-lg overflow-hidden" style={{ height: "500px" }}>
             <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
           </div>
         </div>
         
-        <div className="grid grid-cols-1 gap-6">
-          <FeaturedItem
-            image="https://images.unsplash.com/photo-1504893524553-b855bce32c67"
-            title="尼泊尔手链"
-            price="¥1,299"
-            discount="¥1,599"
-          />
-        </div>
-        
-        <div className="grid grid-cols-1 gap-6">
-          <FeaturedItem
-            image="https://images.unsplash.com/photo-1458668383970-8ddd3927deed"
-            title="印度加持佛珠"
-            price="¥899"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6">
+            <FeaturedItem
+              image="https://images.unsplash.com/photo-1504893524553-b855bce32c67"
+              title="尼泊尔手链"
+              price="¥1,299"
+              discount="¥1,599"
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 gap-6">
+            <FeaturedItem
+              image="https://images.unsplash.com/photo-1458668383970-8ddd3927deed"
+              title="印度加持佛珠"
+              price="¥899"
+            />
+          </div>
         </div>
       </div>
     </section>
