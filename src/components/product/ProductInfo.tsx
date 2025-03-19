@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { Product } from "@/types/product";
+import { useCart } from "@/context/CartContext";
 
 interface ProductInfoProps {
   product: Product;
@@ -23,12 +24,32 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "");
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || "");
+  const { addToCart, setIsCartOpen } = useCart();
 
   const handleAddToCart = () => {
+    addToCart({
+      product,
+      quantity,
+      selectedColor,
+      selectedSize
+    });
+    
     toast({
       title: "已添加到购物车",
       description: `${quantity} × ${product.title} 已成功添加到购物车`,
     });
+  };
+
+  const handleBuyNow = () => {
+    addToCart({
+      product,
+      quantity,
+      selectedColor,
+      selectedSize
+    });
+    
+    // Open cart drawer
+    setIsCartOpen(true);
   };
 
   const handleWishlist = () => {
@@ -153,6 +174,9 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         <Button size="lg" className="flex-1" onClick={handleAddToCart}>
           <ShoppingCart size={20} />
           加入购物车
+        </Button>
+        <Button size="lg" variant="secondary" className="flex-1" onClick={handleBuyNow}>
+          立即购买
         </Button>
         <Button
           size="icon"
