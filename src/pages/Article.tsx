@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Home } from 'lucide-react';
+import HerbProcessCarousel from '@/components/HerbProcessCarousel';
 
 // Sample article content data (in a real app, this would come from an API)
 const articleContentData = {
@@ -37,7 +38,15 @@ const articleContentData = {
       title: '中国传统节日的由来',
       content: [
         { type: 'paragraph', text: '中国传统节日蕴含着深厚的文化内涵和历史故事，是中华民族几千年文明的重要组成部分。这些节日不仅是人们休息娱乐的时间，更是传承文化、凝聚民族情感的重要载体。' },
-        { type: 'image', src: '/photo-1470071459604-3b5ec3a7fe05', alt: '传统节日图片' },
+        { type: 'carousel', images: [
+          { src: '/photo-1470071459604-3b5ec3a7fe05', alt: '春节花灯', description: '春节花灯：象征着新的希望和美好的祝愿' },
+          { src: '/photo-1482938289607-e9573fc25ebb', alt: '清明祭祀', description: '清明祭祀：缅怀先人，传承孝道文化' },
+          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '端午龙舟', description: '端午龙舟：纪念爱国诗人屈原' },
+          { src: '/photo-1518495973542-4542c06a5843', alt: '中秋赏月', description: '中秋赏月：团圆的象征，表达对亲人的思念' },
+          { src: '/photo-1470813740244-df37b8c1edcb', alt: '元宵观灯', description: '元宵观灯：意味着团圆和喜庆' },
+          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '重阳登高', description: '重阳登高：祈求长寿安康' },
+          { src: '/photo-1518495973542-4542c06a5843', alt: '腊八粥', description: '腊八粥：富含多种食材，象征着丰收和期盼' }
+        ]},
         { type: 'paragraph', text: '春节是中国最重要的传统节日，起源于上古时期的祭祀活动。人们在这一天祭祀祖先和神灵，祈求来年风调雨顺、五谷丰登。随着时间的推移，春节逐渐演变为以家庭团聚为主题的节日，形成了贴春联、放鞭炮、吃年夜饭等丰富多彩的习俗。' },
         { type: 'paragraph', text: '端午节源于对屈原的纪念，这位伟大的爱国诗人投江自尽后，人们为了不让鱼虾伤害他的遗体，划船追赶、投粽入江，这一习俗逐渐演变成了端午节的龙舟竞渡和吃粽子的传统。' },
         { type: 'paragraph', text: '中秋节则与月亮崇拜有关，古人认为秋分时节的月亮最圆最亮，象征着团圆和丰收。人们在这一天赏月、吃月饼，表达对美好生活的向往和对亲人的思念。' },
@@ -48,13 +57,25 @@ const articleContentData = {
   'drawings': {
     // Similar structure for drawings articles
     '1': {
-      title: '国画的基本技法',
+      title: '香方手串的制作过程',
       content: [
-        { type: 'paragraph', text: '国画是中国特有的绘画形式，其技法独特而精湛，有着数千年的发展历史。国画使用毛笔、墨和宣纸等传统工具材料，通过线条、墨色变化和留白等手法表达艺术意境。' },
-        { type: 'image', src: '/photo-1470813740244-df37b8c1edcb', alt: '国画技法图片' },
-        { type: 'paragraph', text: '国画的基本技法可以分为线条技法和墨色技法两大类。线条技法包括勾、勒、皴、点、染等，每种线条都有其特定的表现效果。例如，"勾"是用笔画出物象的轮廓；"皴"则是表现山石肌理的特殊笔法。' },
-        { type: 'paragraph', text: '墨色技法主要包括焦、浓、重、淡、清等墨色的运用。中国画强调"墨分五色"，即通过墨色的深浅变化表现出丰富的层次和质感。除此之外，还有破墨、泼墨、积墨等技法，每种技法都能产生独特的艺术效果。' },
-        { type: 'paragraph', text: '国画技法的掌握需要长期的学习和实践，除了技巧的训练外，更重要的是理解中国传统文化和美学观念，只有将技法与精神内涵相结合，才能创作出真正有生命力的国画作品。' },
+        { type: 'paragraph', text: '香方手串是一种将中药材精心配制，通过特殊工艺制成的佩戴饰品，不仅具有美观的外表，还融合了传统中医的养生理念。下面将为您展示香方手串从原材料到成品的完整制作过程。' },
+        { type: 'carousel', images: [
+          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '中药种植', description: '中药材精心种植，选择优质土壤和环境' },
+          { src: '/photo-1518495973542-4542c06a5843', alt: '采摘过程', description: '按照传统时令采摘，保证药材功效最佳' },
+          { src: '/photo-1470813740244-df37b8c1edcb', alt: '清洗筛选', description: '精细清洗和筛选，去除杂质' },
+          { src: '/photo-1470071459604-3b5ec3a7fe05', alt: '切片晾晒', description: '按照传统工艺切片和自然晾晒' },
+          { src: '/photo-1482938289607-e9573fc25ebb', alt: '蒸煮提炼', description: '低温蒸煮，提取精华成分' },
+          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '配方调制', description: '根据古方秘制调配，平衡阴阳五行' },
+          { src: '/photo-1518495973542-4542c06a5843', alt: '精制成型', description: '经过数十道工序精制成型' },
+          { src: '/photo-1470813740244-df37b8c1edcb', alt: '打磨抛光', description: '精细打磨和抛光，提升质感' },
+          { src: '/photo-1470071459604-3b5ec3a7fe05', alt: '祈福加持', description: '传统仪式祈福加持，赋予灵性' },
+          { src: '/photo-1482938289607-e9573fc25ebb', alt: '质检包装', description: '严格质检和精美包装，确保品质' },
+          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '成品展示', description: '成品展示，每一件都独一无二' },
+          { src: '/photo-1518495973542-4542c06a5843', alt: '佩戴效果', description: '佩戴效果，展现东方韵味与精神内涵' }
+        ]},
+        { type: 'paragraph', text: '香方手串的制作过程融合了传统中医理念和现代工艺，每一步都严格遵循古法，保证了成品的品质和功效。从种植到成品，经过精心的筛选和加工，每一件香方手串都凝聚了匠人的心血和智慧。' },
+        { type: 'paragraph', text: '不同的中药材组合有着不同的功效，有的侧重养心安神，有的注重滋补养生，还有的着重于提升气场。选择适合自己的香方手串，能够在装饰美观的同时，起到相应的养生保健作用。' },
       ]
     },
     // Add more articles
@@ -141,6 +162,14 @@ const Article = () => {
                   />
                   {item.alt && <p className="text-center text-gray-400 mt-2">{item.alt}</p>}
                 </div>
+              );
+            } else if (item.type === 'carousel' && item.images) {
+              return (
+                <HerbProcessCarousel 
+                  key={index}
+                  images={item.images}
+                  autoplayInterval={2000}
+                />
               );
             }
             return null;
