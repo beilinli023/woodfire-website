@@ -74,7 +74,7 @@ const FeaturedSection = () => {
       description: "切片过程：精确切割，确保最佳药效释放"
     },
     {
-      src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
+      src: "public/lovable-uploads/fd364845-762c-4d8a-8b8f-43668a8ea607.png",
       alt: "制作过程",
       description: "制作过程：手工编织，每一颗珠子都经过严格筛选"
     }
@@ -90,10 +90,13 @@ const FeaturedSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="col-span-1 md:col-span-1">
+        <div className="col-span-1 md:col-span-2 mb-6">
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">香方手串制作过程</h3>
-          <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
+          <div className="w-full" style={{ height: "500px" }}>
+            <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
+          </div>
         </div>
+        
         <div className="grid grid-cols-1 gap-6">
           <FeaturedItem
             image="https://images.unsplash.com/photo-1504893524553-b855bce32c67"
@@ -101,6 +104,9 @@ const FeaturedSection = () => {
             price="¥1,299"
             discount="¥1,599"
           />
+        </div>
+        
+        <div className="grid grid-cols-1 gap-6">
           <FeaturedItem
             image="https://images.unsplash.com/photo-1458668383970-8ddd3927deed"
             title="印度加持佛珠"
