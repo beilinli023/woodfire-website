@@ -65,9 +65,9 @@ const TempleCard = ({ name, image, description, location }: TempleCardProps) => 
               {location}
             </p>
             
-            <h3 className="text-lg font-medium mt-4 mb-2">开光服务</h3>
+            <h3 className="text-lg font-medium mt-4 mb-2">祈福服务</h3>
             <p className="text-gray-300">
-              该道观提供传统手串开光服务，由资深道长亲自主持，遵循古法仪式，为信众祈福纳祥。
+              该道观提供传统手串祈福服务，由资深道长亲自主持，遵循古法仪式，为信众祈福纳祥。
             </p>
           </div>
         </div>

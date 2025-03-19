@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -8,16 +7,16 @@ const BlessingProcess = () => {
   return (
     <div className="space-y-12">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center">手串开光仪式</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">手串祈福仪式</h2>
         <p className="text-gray-300 mb-8">
-          手串开光是一种传统的道教仪式，旨在为佩戴者带来好运、健康和保护。开光过程通常由资深道长主持，遵循古老的仪式和传统进行。
-          以下是手串开光的主要步骤和意义。
+          手串祈福是一种传统的道教仪式，旨在为佩戴者带来好运、健康和保护。祈福过程通常由资深道长主持，遵循古老的仪式和传统进行。
+          以下是手串祈福的主要步骤和意义。
         </p>
         
         <Tabs defaultValue="steps">
           <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="steps" className="flex items-center gap-2">
-              <Building className="h-4 w-4" /> 开光步骤
+              <Building className="h-4 w-4" /> 祈福步骤
             </TabsTrigger>
             <TabsTrigger value="photos" className="flex items-center gap-2">
               <Image className="h-4 w-4" /> 图片展示
@@ -35,7 +34,7 @@ const BlessingProcess = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300">
-                    开光前，道长会先进行自身的净化，包括沐浴更衣、净手焚香等。同时，手串也会被放置在特定的位置，用檀香熏蒸，以驱除杂气。
+                    祈福前，道长会先进行自身的净化，包括沐浴更衣、净手焚香等。同时，手串也会被放置在特定的位置，用檀香熏蒸，以驱除杂气。
                   </p>
                 </CardContent>
               </Card>
@@ -46,7 +45,7 @@ const BlessingProcess = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300">
-                    开光仪式正式开始时，道长会点燃香火，向天地神明祷告。香火在道教中被视为沟通人神的媒介，其烟气能够传递信息至神界。
+                    祈福仪式正式开始时，道长会点燃香火，向天地神明祷告。香火在道教中被视为沟通人神的媒介，其烟气能够传递信息至神界。
                   </p>
                 </CardContent>
               </Card>
