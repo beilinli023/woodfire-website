@@ -10,6 +10,9 @@ import NotFound from "./pages/NotFound";
 import Blessing from "./pages/Blessing";
 import Contact from "./pages/Contact";
 import Product from "./pages/Product";
+import Culture from "./pages/Culture";
+import ArticleList from "./pages/ArticleList";
+import Article from "./pages/Article";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +26,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/blessing" element={<Blessing />} />
-            <Route path="/culture" element={<Navigate to="/blessing" replace />} />
+            <Route path="/culture" element={<Culture />} />
+            <Route path="/culture/:category" element={<ArticleList />} />
+            <Route path="/culture/:category/:articleId" element={<Article />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/charity" element={<Index />} />
             <Route path="/categories/health" element={<Index />} />

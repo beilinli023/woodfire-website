@@ -16,6 +16,11 @@ const navItems = [
     title: 'BLESSING',
     emoji: '💎',
     path: '/blessing'
+  },
+  {
+    title: '文化',
+    emoji: '📚',
+    path: '/culture'
   }
 ];
 
