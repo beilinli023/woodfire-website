@@ -1,11 +1,12 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { 
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 import { useInterval } from "@/hooks/use-interval";
 
@@ -24,12 +25,27 @@ const HerbProcessCarousel = ({
 }: HerbProcessCarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  
+  // Update current slide when carousel changes
+  React.useEffect(() => {
+    if (!api) return;
+    
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+    
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
   
   // Handle autoplay with custom hook
   useInterval(
     () => {
-      if (isPlaying) {
-        setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+      if (isPlaying && api) {
+        api.scrollNext();
       }
     },
     isPlaying ? autoplayInterval : null
@@ -38,6 +54,7 @@ const HerbProcessCarousel = ({
   return (
     <div className="my-8 relative">
       <Carousel 
+        setApi={setApi}
         className="w-full" 
         onMouseEnter={() => setIsPlaying(false)}
         onMouseLeave={() => setIsPlaying(true)}
