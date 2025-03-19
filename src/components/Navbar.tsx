@@ -38,7 +38,7 @@ const Navbar = () => {
                 About Us
               </Link>
               <Link to="/blessing" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-                blessing
+                BLESSING 💎
               </Link>
               <Link to="/charity" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
                 慈善
@@ -79,7 +79,7 @@ const Navbar = () => {
                 About Us
               </Link>
               <Link to="/blessing" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-                blessing
+                BLESSING 💎
               </Link>
               <Link to="/charity" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 慈善

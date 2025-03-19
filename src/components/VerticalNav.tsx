@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -12,7 +13,7 @@ const navItems = [
     path: '#'
   },
   {
-    title: 'blessing',
+    title: 'BLESSING',
     emoji: '💎',
     path: '/blessing'
   }
