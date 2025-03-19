@@ -35,10 +35,13 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
               <Link to="/blessing" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-                祈福
+                About Us
               </Link>
               <Link to="/culture" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-                文化
+                Clture
+              </Link>
+              <Link to="/charity" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
+                慈善
               </Link>
               <Link to="/contact" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
                 联系我们
@@ -73,10 +76,13 @@ const Navbar = () => {
         {isMobileMenuOpen && <div className="md:hidden bg-black/95 animate-fade-in">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link to="/blessing" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-                祈福
+                About Us
               </Link>
               <Link to="/culture" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-                文化
+                Clture
+              </Link>
+              <Link to="/charity" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+                慈善
               </Link>
               <Link to="/contact" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 联系我们
