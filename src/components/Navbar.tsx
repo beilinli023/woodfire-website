@@ -37,8 +37,8 @@ const Navbar = () => {
               <Link to="/blessing" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
                 About Us
               </Link>
-              <Link to="/culture" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
-                Clture
+              <Link to="/blessing" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
+                blessing
               </Link>
               <Link to="/charity" className="text-white hover:text-gray-300 transition-colors px-3 py-2 text-sm font-medium">
                 慈善
@@ -78,8 +78,8 @@ const Navbar = () => {
               <Link to="/blessing" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 About Us
               </Link>
-              <Link to="/culture" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-                Clture
+              <Link to="/blessing" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+                blessing
               </Link>
               <Link to="/charity" className="text-white hover:bg-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 慈善
