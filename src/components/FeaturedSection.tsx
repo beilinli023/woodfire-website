@@ -1,5 +1,6 @@
 
 import { ChevronRight } from 'lucide-react';
+import HerbProcessCarousel from '@/components/HerbProcessCarousel';
 
 interface FeaturedItemProps {
   image: string;
@@ -40,6 +41,45 @@ const FeaturedItem = ({ image, title, subtitle, price, discount, fullWidth = fal
 );
 
 const FeaturedSection = () => {
+  // Sample herb process images for the carousel
+  const herbProcessImages = [
+    {
+      src: "https://images.unsplash.com/photo-1458668383970-8ddd3927deed",
+      alt: "种植过程",
+      description: "种植过程：精选优质土壤，种植香草植物"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
+      alt: "采摘过程",
+      description: "采摘过程：选择最佳时机，手工采摘新鲜药材"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
+      alt: "清洗过程",
+      description: "清洗过程：纯净水源，细致清洁每一味药材"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07",
+      alt: "蒸煮过程",
+      description: "蒸煮过程：传统工艺，精心掌控火候和时间"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1458668383970-8ddd3927deed",
+      alt: "晾晒过程",
+      description: "晾晒过程：自然风干，保留药材有效成分"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
+      alt: "切片过程",
+      description: "切片过程：精确切割，确保最佳药效释放"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
+      alt: "制作过程",
+      description: "制作过程：手工编织，每一颗珠子都经过严格筛选"
+    }
+  ];
+
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center mb-10">
@@ -50,12 +90,10 @@ const FeaturedSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FeaturedItem
-          image="https://images.unsplash.com/photo-1458668383970-8ddd3927deed"
-          title="西藏珍珠系列"
-          subtitle="发现珍藏多年的西藏圣地珠宝"
-          fullWidth
-        />
+        <div className="col-span-1 md:col-span-1">
+          <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">香方手串制作过程</h3>
+          <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
+        </div>
         <div className="grid grid-cols-1 gap-6">
           <FeaturedItem
             image="https://images.unsplash.com/photo-1504893524553-b855bce32c67"
