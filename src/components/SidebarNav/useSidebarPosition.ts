@@ -7,6 +7,7 @@ export const useSidebarPosition = (
 ) => {
   const [isSticky, setIsSticky] = useState(true);
   const [hasReachedInstagram, setHasReachedInstagram] = useState(false);
+  const [absoluteTopPosition, setAbsoluteTopPosition] = useState(0);
 
   useEffect(() => {
     const calculatePosition = () => {
@@ -19,11 +20,17 @@ export const useSidebarPosition = (
       const instagramRect = instagramSection.getBoundingClientRect();
       
       // Calculate the trigger point - when the Instagram section is coming into view
-      // We want to transition before it's fully visible
-      const triggerPoint = window.innerHeight - 300; // 300px before the section is fully visible
+      const triggerPoint = window.innerHeight - 200; // 200px before the section is fully visible
       
       // Check if we've reached the Instagram section
       if (instagramRect.top <= triggerPoint) {
+        // If we haven't already set the absolute position, do it now
+        if (!hasReachedInstagram) {
+          // Calculate where the sidebar should stop (current scroll position minus some offset)
+          const stopPosition = window.scrollY - 100; // 100px offset for visual balance
+          setAbsoluteTopPosition(Math.max(stopPosition, 0));
+        }
+        
         setHasReachedInstagram(true);
         setIsSticky(false);
       } else {
@@ -41,7 +48,7 @@ export const useSidebarPosition = (
       window.removeEventListener('scroll', calculatePosition);
       window.removeEventListener('resize', calculatePosition);
     };
-  }, [navRef]);
+  }, [navRef, hasReachedInstagram]);
 
   const getPositioningStyle = () => {
     // If we're before the Instagram section, use sticky positioning
@@ -56,13 +63,12 @@ export const useSidebarPosition = (
       } as React.CSSProperties;
     }
     
-    // Once we reach the Instagram section, use absolute positioning with a transform
+    // Once we reach the Instagram section, use absolute positioning with a fixed top
     // This will make the sidebar stop and stay in place while the rest of the page scrolls
     return {
       position: 'absolute',
-      top: 0,
+      top: `${absoluteTopPosition}px`,
       left: 0,
-      transform: `translateY(${Math.max(window.scrollY - 180, 0)}px)`, // Adjust the 180 value as needed
       height: 'auto',
       maxHeight: 'calc(100vh - 80px)',
       zIndex: 30
