@@ -30,20 +30,5 @@ export const navItems: NavItem[] = [
     title: 'BLESSING',
     emoji: '💎',
     path: '/blessing'
-  },
-  {
-    title: 'About Us',
-    emoji: '🏮',
-    path: '/about'
-  },
-  {
-    title: '慈善',
-    emoji: '🤲',
-    path: '/charity'
-  },
-  {
-    title: '文化',
-    emoji: '📚',
-    path: '/culture'
   }
 ];
