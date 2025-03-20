@@ -23,7 +23,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: 'KEEP MORE',
-    emoji: '🌟',
+    emoji: '⭐',
     path: '#'
   },
   {
@@ -40,5 +40,10 @@ export const navItems: NavItem[] = [
     title: '慈善',
     emoji: '🤲',
     path: '/charity'
+  },
+  {
+    title: '文化',
+    emoji: '📚',
+    path: '/culture'
   }
 ];

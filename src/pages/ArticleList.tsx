@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SidebarNav from '@/components/SidebarNav';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Home } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -41,66 +41,72 @@ const ArticleList = () => {
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
       <Navbar />
       
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <Breadcrumb className="mb-8">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">
-                <Home className="h-4 w-4" />
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/culture">文化</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink>{categoryTitle}</BreadcrumbLink>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="flex flex-col md:flex-row w-full relative pt-24 md:pt-32">
+        <div className="w-full md:w-[15%]">
+          <SidebarNav />
+        </div>
         
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">{categoryTitle}</h1>
-        <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
-          浏览{categoryTitle}相关的精选文章，探索传统文化的魅力
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {articles.map((article) => (
-            <Link 
-              key={article.id} 
-              to={`/culture/${category}/${article.id}`}
-              className="block transition-transform duration-300 hover:scale-[1.02]"
-            >
-              <Card className="bg-black/40 border-gray-800 overflow-hidden hover:border-gray-600 transition-colors h-full">
-                <div className="flex flex-col h-full">
-                  <div className="h-48 overflow-hidden">
-                    <img 
-                      src={article.image} 
-                      alt={article.title} 
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/placeholder.svg";
-                      }}
-                    />
-                  </div>
-                  <div className="p-6 flex-grow">
-                    <h3 className="text-xl font-bold mb-3">{article.title}</h3>
-                    <p className="text-gray-300 mb-4">{article.description}</p>
-                    <div className="mt-auto pt-4">
-                      <span className="text-white/70 inline-flex items-center">
-                        阅读全文
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </span>
+        <div className="w-full md:w-[85%] px-4 sm:px-6 lg:px-8 pb-16">
+          <Breadcrumb className="mb-8">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">
+                  <Home className="h-4 w-4" />
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/culture">文化</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink>{categoryTitle}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">{categoryTitle}</h1>
+          <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
+            浏览{categoryTitle}相关的精选文章，探索传统文化的魅力
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {articles.map((article) => (
+              <Link 
+                key={article.id} 
+                to={`/culture/${category}/${article.id}`}
+                className="block transition-transform duration-300 hover:scale-[1.02]"
+              >
+                <Card className="bg-black/40 border-gray-800 overflow-hidden hover:border-gray-600 transition-colors h-full">
+                  <div className="flex flex-col h-full">
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={article.image} 
+                        alt={article.title} 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/placeholder.svg";
+                        }}
+                      />
+                    </div>
+                    <div className="p-6 flex-grow">
+                      <h3 className="text-xl font-bold mb-3">{article.title}</h3>
+                      <p className="text-gray-300 mb-4">{article.description}</p>
+                      <div className="mt-auto pt-4">
+                        <span className="text-white/70 inline-flex items-center">
+                          阅读全文
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       

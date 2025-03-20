@@ -3,83 +3,27 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SidebarNav from '@/components/SidebarNav';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Home } from 'lucide-react';
-import HerbProcessCarousel from '@/components/HerbProcessCarousel';
 
-// Sample article content data (in a real app, this would come from an API)
-const articleContentData = {
-  'bencao': {
-    '1': {
-      title: '人参：补气养血的上品',
-      content: [
-        { type: 'paragraph', text: '人参，被誉为"百草之王"，是一种珍贵的草本植物，在《本草纲目》中有详细记载。它的主要功效是大补元气，补脾益肺，生津止渴，安神益智。人参的药用历史可以追溯到数千年前，古代中医典籍中都有关于人参的记载。' },
-        { type: 'image', src: '/photo-1465146344425-f00d5f5c8f07', alt: '人参图片' },
-        { type: 'paragraph', text: '《本草纲目》中记载："人参，味甘微苦，性微温，无毒。主补五脏，安精神，定魂魄，止惊悸，除邪气，明目开心益智，久服轻身延年。" 这段描述全面概括了人参的药性和功效。' },
-        { type: 'paragraph', text: '人参的药用部位主要是根，根据生长年限和加工方法的不同，又分为生晒参、红参、白参等多种。不同的加工方法使人参具有不同的药性特点，适用于不同的体质和病症。' },
-        { type: 'paragraph', text: '在现代研究中，人参被发现含有人参皂苷、多糖、挥发油、氨基酸等多种有效成分，这些成分对提高免疫力、抗疲劳、抗衰老等方面都有显著效果。' },
-      ]
-    },
-    '2': {
-      title: '灵芝：延年益寿的神药',
-      content: [
-        { type: 'paragraph', text: '灵芝在古代被视为仙草，《本草纲目》称其"久食轻身不老"。灵芝是一种名贵的中药材，在中医药历史文献中，灵芝被列为上品，有"仙草"之称。' },
-        { type: 'image', src: '/photo-1518495973542-4542c06a5843', alt: '灵芝图片' },
-        { type: 'paragraph', text: '《本草纲目》中记载："灵芝，甘平无毒，主治胸中结，益心气，补中，增智慧，不忘。久食，轻身不老，延年神仙。"这段描述表明灵芝具有益心安神、补中益气、增强记忆力以及延年益寿的功效。' },
-        { type: 'paragraph', text: '灵芝的种类很多，常用的有赤芝、紫芝、青芝、黄芝、白芝、黑芝等，其中以赤芝的药用价值最高，也是最常见的一种。' },
-        { type: 'paragraph', text: '现代研究表明，灵芝含有多糖、三萜、腺苷、蛋白质等多种活性成分，具有增强免疫力、抗肿瘤、保护肝脏、降血糖、降血脂等多种药理作用。' },
-      ]
-    },
-    // Add more articles as needed
-  },
-  'tradition': {
-    // Similar structure for tradition articles
-    '1': {
-      title: '中国传统节日的由来',
-      content: [
-        { type: 'paragraph', text: '中国传统节日蕴含着深厚的文化内涵和历史故事，是中华民族几千年文明的重要组成部分。这些节日不仅是人们休息娱乐的时间，更是传承文化、凝聚民族情感的重要载体。' },
-        { type: 'carousel', images: [
-          { src: '/photo-1470071459604-3b5ec3a7fe05', alt: '春节花灯', description: '春节花灯：象征着新的希望和美好的祝愿' },
-          { src: '/photo-1482938289607-e9573fc25ebb', alt: '清明祭祀', description: '清明祭祀：缅怀先人，传承孝道文化' },
-          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '端午龙舟', description: '端午龙舟：纪念爱国诗人屈原' },
-          { src: '/photo-1518495973542-4542c06a5843', alt: '中秋赏月', description: '中秋赏月：团圆的象征，表达对亲人的思念' },
-          { src: '/photo-1470813740244-df37b8c1edcb', alt: '元宵观灯', description: '元宵观灯：意味着团圆和喜庆' },
-          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '重阳登高', description: '重阳登高：祈求长寿安康' },
-          { src: '/photo-1518495973542-4542c06a5843', alt: '腊八粥', description: '腊八粥：富含多种食材，象征着丰收和期盼' }
-        ]},
-        { type: 'paragraph', text: '春节是中国最重要的传统节日，起源于上古时期的祭祀活动。人们在这一天祭祀祖先和神灵，祈求来年风调雨顺、五谷丰登。随着时间的推移，春节逐渐演变为以家庭团聚为主题的节日，形成了贴春联、放鞭炮、吃年夜饭等丰富多彩的习俗。' },
-        { type: 'paragraph', text: '端午节源于对屈原的纪念，这位伟大的爱国诗人投江自尽后，人们为了不让鱼虾伤害他的遗体，划船追赶、投粽入江，这一习俗逐渐演变成了端午节的龙舟竞渡和吃粽子的传统。' },
-        { type: 'paragraph', text: '中秋节则与月亮崇拜有关，古人认为秋分时节的月亮最圆最亮，象征着团圆和丰收。人们在这一天赏月、吃月饼，表达对美好生活的向往和对亲人的思念。' },
-      ]
-    },
-    // Add more articles
-  },
-  'drawings': {
-    // Similar structure for drawings articles
-    '1': {
-      title: '香方手串的制作过程',
-      content: [
-        { type: 'paragraph', text: '香方手串是一种将中药材精心配制，通过特殊工艺制成的佩戴饰品，不仅具有美观的外表，还融合了传统中医的养生理念。下面将为您展示香方手串从原材料到成品的完整制作过程。' },
-        { type: 'carousel', images: [
-          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '中药种植', description: '中药材精心种植，选择优质土壤和环境' },
-          { src: '/photo-1518495973542-4542c06a5843', alt: '采摘过程', description: '按照传统时令采摘，保证药材功效最佳' },
-          { src: '/photo-1470813740244-df37b8c1edcb', alt: '清洗筛选', description: '精细清洗和筛选，去除杂质' },
-          { src: '/photo-1470071459604-3b5ec3a7fe05', alt: '切片晾晒', description: '按照传统工艺切片和自然晾晒' },
-          { src: '/photo-1482938289607-e9573fc25ebb', alt: '蒸煮提炼', description: '低温蒸煮，提取精华成分' },
-          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '配方调制', description: '根据古方秘制调配，平衡阴阳五行' },
-          { src: '/photo-1518495973542-4542c06a5843', alt: '精制成型', description: '经过数十道工序精制成型' },
-          { src: '/photo-1470813740244-df37b8c1edcb', alt: '打磨抛光', description: '精细打磨和抛光，提升质感' },
-          { src: '/photo-1470071459604-3b5ec3a7fe05', alt: '祈福加持', description: '传统仪式祈福加持，赋予灵性' },
-          { src: '/photo-1482938289607-e9573fc25ebb', alt: '质检包装', description: '严格质检和精美包装，确保品质' },
-          { src: '/photo-1465146344425-f00d5f5c8f07', alt: '成品展示', description: '成品展示，每一件都独一无二' },
-          { src: '/photo-1518495973542-4542c06a5843', alt: '佩戴效果', description: '佩戴效果，展现东方韵味与精神内涵' }
-        ]},
-        { type: 'paragraph', text: '香方手串的制作过程融合了传统中医理念和现代工艺，每一步都严格遵循古法，保证了成品的品质和功效。从种植到成品，经过精心的筛选和加工，每一件香方手串都凝聚了匠人的心血和智慧。' },
-        { type: 'paragraph', text: '不同的中药材组合有着不同的功效，有的侧重养心安神，有的注重滋补养生，还有的着重于提升气场。选择适合自己的香方手串，能够在装饰美观的同时，起到相应的养生保健作用。' },
-      ]
-    },
-    // Add more articles
-  }
+// Sample article data (in a real app, this would come from an API)
+const articleData = {
+  'bencao': [
+    { id: 1, title: '人参：补气养血的上品', content: '人参被誉为"百草之王"，在《本草纲目》中有详细记载。据《本草纲目》记载，人参性微温，味甘、微苦，归心、肺、脾经，具有大补元气、复脉固脱、补脾益肺、生津养血、安神益智等功效。现代研究表明，人参含有人参皂苷、多糖、挥发油等多种有效成分，具有增强免疫力、抗疲劳、抗衰老等作用。' },
+    { id: 2, title: '灵芝：延年益寿的神药', content: '灵芝在古代被视为仙草，《本草纲目》称其"久食轻身不老"。灵芝性平，味甘、淡，归心、肝、肺、肾经，具有补气安神、止咳平喘、养血补髓等功效。现代研究发现，灵芝含有三萜类化合物、多糖体、腺苷等成分，具有调节免疫、抗肿瘤、保肝等作用。' },
+    { id: 3, title: '当归：女性的良药', content: '当归是中药中常用的补血药，《本草纲目》记载其"补血活血"。当归性温，味甘、辛，归肝、心、脾经，具有补血活血、调经止痛、润肠通便等功效。现代研究表明，当归含有阿魏酸、当归多糖等活性成分，具有扩张血管、抗血栓、调节免疫等作用。' },
+  ],
+  'tradition': [
+    { id: 1, title: '中国传统节日的由来', content: '中国传统节日蕴含着深厚的文化内涵和历史故事。春节作为中国最重要的传统节日，起源于上古时期的祭祀活动，象征着辞旧迎新、祈求丰收。端午节源于对屈原的纪念，同时也是驱除瘟疫的重要节日。中秋节则与月亮崇拜有关，体现了中国人对家庭团圆的重视。' },
+    { id: 2, title: '中国传统服饰的演变', content: '从汉服到旗袍，中国传统服饰的发展反映了社会变迁。汉服作为汉族的传统服饰，强调礼仪、等级和审美，具有宽衣博带、交领右衽的特点。唐朝服饰受到外来文化的影响，色彩鲜艳，款式多样。宋朝服饰趋于保守，明清时期则形成了满汉融合的风格。近代旗袍的产生，融合了中西方审美，成为展现东方女性美的代表。' },
+    { id: 3, title: '中国传统礼仪与规范', content: '礼仪之邦的称号源远流长，传统礼仪体现了中国人的精神追求。中国传统礼仪强调"敬"与"和"，注重人际关系的和谐与社会秩序的稳定。从古代的"三纲五常"到现代的待人接物，礼仪规范一直是中国文化的重要组成部分。传统礼仪包括日常生活礼仪、交际礼仪、婚丧嫁娶礼仪等，体现了中国人的道德观念和价值取向。' },
+  ],
+  'drawings': [
+    { id: 1, title: '国画的基本技法', content: '国画是中国特有的绘画形式，其技法独特而精湛。国画的基本技法包括线描、皴、擦、点、染等，每种技法都有其独特的表现效果。线描是国画的基础，强调线条的流畅和变化；皴法用于表现山石的质感；点法多用于表现叶、花、果等；染法则是色彩的晕染。掌握这些基本技法，是学习国画的第一步。' },
+    { id: 2, title: '山水画的意境表达', content: '山水画不仅是自然景观的描绘，更是画家内心世界的表达。中国山水画注重"外师造化，中得心源"，强调画家对自然的感悟和对生命的思考。山水画的意境表达通过构图、用笔、用墨等方面来实现，追求"有境"、"有情"、"有理"的艺术效果。宋代的"景外之景，象外之象"和元代的"平淡天真"，都是山水画意境表达的高度概括。' },
+    { id: 3, title: '花鸟画的色彩运用', content: '花鸟画中的色彩运用有着独特的美学标准和表现手法。传统花鸟画以水墨为主，辅以淡彩，强调"墨分五色"和"白石为骨，墨为肉，五彩为衣裳"的理念。色彩的运用需要考虑色相、明度、纯度的变化，以及冷暖、虚实的对比。花鸟画的色彩不求真实，而求意象，通过色彩的情感表达，传达画家对生命的热爱和对自然的赞美。' },
+  ]
 };
 
 const categoryTitles = {
@@ -89,103 +33,74 @@ const categoryTitles = {
 };
 
 const Article = () => {
-  const { category, articleId } = useParams<{ category: string, articleId: string }>();
+  const { category, articleId } = useParams<{ category: string; articleId: string }>();
   
-  // Get article data based on category and articleId
-  const article = category && articleId && articleContentData[category as keyof typeof articleContentData]?.[articleId];
-  const categoryTitle = category ? categoryTitles[category as keyof typeof categoryTitles] || '文章' : '文章';
+  // Find the article
+  const articles = category ? articleData[category as keyof typeof articleData] || [] : [];
+  const article = articles.find(a => a.id.toString() === articleId);
   
   if (!article) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
         <Navbar />
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-center">
+        <div className="max-w-5xl mx-auto px-4 pt-24 pb-16 text-center">
           <h1 className="text-4xl font-bold mb-6">文章未找到</h1>
-          <p className="mb-8">抱歉，您请求的文章不存在或已被移除。</p>
-          <Link to="/culture" className="text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md transition-colors">
-            返回文化页面
-          </Link>
+          <Link to="/culture" className="text-blue-400 hover:underline">返回文化页面</Link>
         </div>
         <Footer />
       </div>
     );
   }
+  
+  const categoryTitle = category ? categoryTitles[category as keyof typeof categoryTitles] || '' : '';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
       <Navbar />
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <Breadcrumb className="mb-8">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">
-                <Home className="h-4 w-4" />
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/culture">文化</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href={`/culture/${category}`}>{categoryTitle}</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink>{article.title}</BreadcrumbLink>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-        
-        <h1 className="text-3xl md:text-4xl font-bold mb-8">{article.title}</h1>
-        
-        <div className="prose prose-lg max-w-none prose-invert">
-          {article.content.map((item, index) => {
-            if (item.type === 'paragraph') {
-              return (
-                <p key={index} className="text-gray-300 mb-6 leading-relaxed">
-                  {item.text}
-                </p>
-              );
-            } else if (item.type === 'image') {
-              return (
-                <div key={index} className="my-8">
-                  <img 
-                    src={item.src} 
-                    alt={item.alt} 
-                    className="w-full rounded-lg"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/placeholder.svg";
-                    }}
-                  />
-                  {item.alt && <p className="text-center text-gray-400 mt-2">{item.alt}</p>}
-                </div>
-              );
-            } else if (item.type === 'carousel' && item.images) {
-              return (
-                <HerbProcessCarousel 
-                  key={index}
-                  images={item.images}
-                  autoplayInterval={2000}
-                />
-              );
-            }
-            return null;
-          })}
+      <div className="flex flex-col md:flex-row w-full relative pt-24 md:pt-32">
+        {/* Sidebar Navigation */}
+        <div className="w-full md:w-[15%]">
+          <SidebarNav />
         </div>
         
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <Link 
-            to={`/culture/${category}`}
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
-            </svg>
-            返回{categoryTitle}文章列表
-          </Link>
+        {/* Main Content */}
+        <div className="w-full md:w-[85%] px-4 sm:px-6 lg:px-8 pb-16">
+          <Breadcrumb className="mb-8">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">
+                  <Home className="h-4 w-4" />
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/culture">文化</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`/culture/${category}`}>{categoryTitle}</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink>{article.title}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          
+          <article className="max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">{article.title}</h1>
+            
+            <div className="prose prose-lg prose-invert max-w-none">
+              <p className="text-gray-300 leading-relaxed whitespace-pre-line">{article.content}</p>
+            </div>
+            
+            <div className="mt-12 pt-8 border-t border-gray-800">
+              <Link to={`/culture/${category}`} className="text-amber-400 hover:text-amber-300 transition-colors">
+                &larr; 返回{categoryTitle}文章列表
+              </Link>
+            </div>
+          </article>
         </div>
       </div>
       

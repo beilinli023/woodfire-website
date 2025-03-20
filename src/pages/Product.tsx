@@ -67,40 +67,42 @@ const Product = () => {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
       
-      <div className="max-w-screen-xl mx-auto px-4 flex">
-        {/* Left sidebar */}
-        <div className="hidden md:block md:w-1/5 h-full bg-black/50 backdrop-blur-md">
-          <SidebarNav />
-        </div>
-        
-        {/* Main content */}
-        <div className="w-full md:w-4/5 pb-16">
-          <div className="py-8">
-            <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
-              {/* Product Image Gallery */}
-              <ProductImageGallery images={product.images} />
+      <div className="pt-24 md:pt-32">
+        <div className="flex flex-col md:flex-row w-full relative">
+          {/* Sidebar Navigation */}
+          <div className="w-full md:w-[15%]">
+            <SidebarNav />
+          </div>
+          
+          {/* Main content */}
+          <div className="w-full md:w-[85%] pb-16 px-4">
+            <div className="py-8">
+              <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                {/* Product Image Gallery */}
+                <ProductImageGallery images={product.images} />
+                
+                {/* Product Info (title, price, variants, add to cart) */}
+                <ProductInfo product={product} />
+              </div>
               
-              {/* Product Info (title, price, variants, add to cart) */}
-              <ProductInfo product={product} />
+              {/* Herb Process Carousel */}
+              <div className="my-10 border-t border-gray-800 pt-10">
+                <h2 className="text-2xl font-bold mb-6">香方手串制作过程</h2>
+                <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
+              </div>
+              
+              {/* Product Description & Details */}
+              <ProductDescription product={product} />
+              
+              {/* Product Reviews */}
+              <ProductReviews reviews={product.reviews} />
+              
+              {/* Shipping, payment and return policies */}
+              <ProductPolicies />
+              
+              {/* Related Products */}
+              <RelatedProducts categoryId={product.categoryId} currentProductId={product.id} />
             </div>
-            
-            {/* Herb Process Carousel */}
-            <div className="my-10 border-t border-gray-800 pt-10">
-              <h2 className="text-2xl font-bold mb-6">香方手串制作过程</h2>
-              <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
-            </div>
-            
-            {/* Product Description & Details */}
-            <ProductDescription product={product} />
-            
-            {/* Product Reviews */}
-            <ProductReviews reviews={product.reviews} />
-            
-            {/* Shipping, payment and return policies */}
-            <ProductPolicies />
-            
-            {/* Related Products */}
-            <RelatedProducts categoryId={product.categoryId} currentProductId={product.id} />
           </div>
         </div>
       </div>
