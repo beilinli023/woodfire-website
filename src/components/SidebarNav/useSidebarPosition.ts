@@ -7,7 +7,6 @@ export const useSidebarPosition = (
 ) => {
   const [isSticky, setIsSticky] = useState(true);
   const [hasReachedInstagram, setHasReachedInstagram] = useState(false);
-  const [instagramSectionTop, setInstagramSectionTop] = useState(0);
 
   useEffect(() => {
     const calculatePosition = () => {
@@ -18,14 +17,12 @@ export const useSidebarPosition = (
 
       // Get the Instagram section position
       const instagramRect = instagramSection.getBoundingClientRect();
-      setInstagramSectionTop(instagramRect.top);
       
       // Calculate the trigger point - when the Instagram section is coming into view
       // We want to transition before it's fully visible
       const triggerPoint = window.innerHeight - 300; // 300px before the section is fully visible
       
       // Check if we've reached the Instagram section
-      // We use this to determine if we should switch from sticky to relative positioning
       if (instagramRect.top <= triggerPoint) {
         setHasReachedInstagram(true);
         setIsSticky(false);
@@ -59,13 +56,13 @@ export const useSidebarPosition = (
       } as React.CSSProperties;
     }
     
-    // Once we reach the Instagram section, use relative positioning with a transform
+    // Once we reach the Instagram section, use absolute positioning with a transform
     // This will make the sidebar stop and stay in place while the rest of the page scrolls
     return {
       position: 'absolute',
       top: 0,
       left: 0,
-      transform: `translateY(${Math.max(window.scrollY - 250, 0)}px)`, // Adjust the 250 value as needed
+      transform: `translateY(${Math.max(window.scrollY - 180, 0)}px)`, // Adjust the 180 value as needed
       height: 'auto',
       maxHeight: 'calc(100vh - 80px)',
       zIndex: 30

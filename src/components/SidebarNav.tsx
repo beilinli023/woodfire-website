@@ -35,8 +35,6 @@ const SidebarNav = () => {
       ref={navRef}
       className="py-8 px-4 w-full"
       style={getPositioningStyle()}
-      data-sticky={isSticky ? "true" : "false"}
-      data-reached-instagram={hasReachedInstagram ? "true" : "false"}
     >
       <nav className="flex flex-col space-y-6">
         {/* Regular nav items */}
