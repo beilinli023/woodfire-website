@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 import NavLink from './SidebarNav/NavLink';
-import InstagramLink from './SidebarNav/InstagramLink';
 import { navItems } from './SidebarNav/navItems';
 import { useSidebarPosition } from './SidebarNav/useSidebarPosition';
 
@@ -18,17 +17,6 @@ const SidebarNav = () => {
     e.preventDefault();
     setShowEmailSubscription(true);
   };
-
-  const scrollToInstagram = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const instagramSection = document.getElementById('instagram-section');
-    if (instagramSection) {
-      instagramSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Check if we should show the Instagram link based on the current page
-  const showInstagramLink = location.pathname === '/' || location.pathname === '/home';
 
   return (
     <div 
@@ -53,11 +41,6 @@ const SidebarNav = () => {
             />
           )
         ))}
-
-        {/* Instagram anchor link - only show on home page */}
-        {showInstagramLink && (
-          <InstagramLink onClick={scrollToInstagram} />
-        )}
       </nav>
 
       {/* Email Subscription Dialog */}
