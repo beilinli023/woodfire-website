@@ -1,65 +1,37 @@
+
 import { useState, useEffect, useRef, RefObject } from 'react';
 
 export const useSidebarPosition = (
   navRef: RefObject<HTMLDivElement>,
   navbarHeight = 80
 ) => {
-  const [isFixed, setIsFixed] = useState(true);
-  const [navTop, setNavTop] = useState(navbarHeight);
-  const [shouldFollowScroll, setShouldFollowScroll] = useState(true);
-  const [fixedPosition, setFixedPosition] = useState<number | null>(null);
-  const [nearFooter, setNearFooter] = useState(false);
-  const [footerTop, setFooterTop] = useState(0);
+  const [isSticky, setIsSticky] = useState(true);
+  const [hasReachedInstagram, setHasReachedInstagram] = useState(false);
+  const [instagramSectionTop, setInstagramSectionTop] = useState(0);
 
   useEffect(() => {
     const calculatePosition = () => {
       const instagramSection = document.getElementById('instagram-section');
-      const footer = document.querySelector('footer');
       
-      // If no footer or navRef not available, return early
-      if (!footer || !navRef.current) return;
+      // If no instagramSection or navRef not available, return early
+      if (!instagramSection || !navRef.current) return;
 
-      // Get the footer position regardless of page
-      const footerRect = footer.getBoundingClientRect();
-      const navHeight = navRef.current.offsetHeight;
+      // Get the Instagram section position
+      const instagramRect = instagramSection.getBoundingClientRect();
+      setInstagramSectionTop(instagramRect.top);
       
-      // Get the current footer top position relative to the viewport
-      const currentFooterTop = footerRect.top;
-      setFooterTop(currentFooterTop);
+      // Calculate the trigger point - when the Instagram section is coming into view
+      // We want to transition before it's fully visible
+      const triggerPoint = window.innerHeight - 300; // 300px before the section is fully visible
       
-      // Check if sidebar bottom would overlap with footer
-      const navBottom = navbarHeight + navHeight;
-      const isNearFooter = currentFooterTop <= navBottom + 20; // 20px buffer
-      setNearFooter(isNearFooter);
-
-      // Only do Instagram alignment if the section exists (on home page)
-      if (instagramSection) {
-        const instagramRect = instagramSection.getBoundingClientRect();
-        
-        // Calculate the middle points
-        const instagramMiddle = instagramRect.top + instagramRect.height / 2;
-        const navMiddle = navHeight / 2;
-        
-        // If scrolling down and nav middle aligns with Instagram middle
-        if (window.scrollY > 0 && instagramMiddle <= navMiddle + navbarHeight) {
-          if (shouldFollowScroll) {
-            // We've reached the alignment point, fix the nav at this position
-            const currentWindowScrollY = window.scrollY;
-            setFixedPosition(currentWindowScrollY);
-            setShouldFollowScroll(false);
-            setIsFixed(true);
-          }
-        } else if (window.scrollY === 0 || instagramMiddle > navMiddle + navbarHeight) {
-          // We're above the Instagram section or at the top, resume normal scroll following
-          setShouldFollowScroll(true);
-          setFixedPosition(null);
-          setIsFixed(true);
-          setNavTop(navbarHeight);
-        }
+      // Check if we've reached the Instagram section
+      // We use this to determine if we should switch from sticky to relative positioning
+      if (instagramRect.top <= triggerPoint) {
+        setHasReachedInstagram(true);
+        setIsSticky(false);
       } else {
-        // For pages without Instagram section, just keep nav fixed
-        setIsFixed(true);
-        setNavTop(navbarHeight);
+        setHasReachedInstagram(false);
+        setIsSticky(true);
       }
     };
 
@@ -72,14 +44,14 @@ export const useSidebarPosition = (
       window.removeEventListener('scroll', calculatePosition);
       window.removeEventListener('resize', calculatePosition);
     };
-  }, [shouldFollowScroll, navRef, navbarHeight]);
+  }, [navRef]);
 
   const getPositioningStyle = () => {
-    if (nearFooter) {
-      // If near footer, use absolute positioning to avoid overlap
+    // If we're before the Instagram section, use sticky positioning
+    if (isSticky) {
       return {
-        position: 'absolute',
-        top: `calc(${footerTop}px - ${navRef.current?.offsetHeight || 0}px - 20px)`, // 20px buffer
+        position: 'fixed',
+        top: `${navbarHeight}px`,
         left: 0,
         height: 'auto',
         maxHeight: 'calc(100vh - 80px)',
@@ -87,28 +59,22 @@ export const useSidebarPosition = (
       } as React.CSSProperties;
     }
     
-    if (isFixed) {
-      return { 
-        position: 'fixed',
-        top: fixedPosition ? `${navTop}px` : `${navTop}px`,
-        left: 0,
-        height: 'auto',
-        maxHeight: 'calc(100vh - 80px)',
-        zIndex: 30, // Ensure sidebar appears above other content
-        transform: fixedPosition ? `translateY(${fixedPosition - window.scrollY}px)` : 'none'
-      } as React.CSSProperties;
-    }
-    
+    // Once we reach the Instagram section, use relative positioning with a transform
+    // This will make the sidebar stop and stay in place while the rest of the page scrolls
     return {
       position: 'absolute',
-      top: `${navTop}px`,
+      top: 0,
       left: 0,
+      transform: `translateY(${Math.max(window.scrollY - 250, 0)}px)`, // Adjust the 250 value as needed
       height: 'auto',
-      zIndex: 30 // Ensure sidebar appears above other content
+      maxHeight: 'calc(100vh - 80px)',
+      zIndex: 30
     } as React.CSSProperties;
   };
 
   return {
-    getPositioningStyle
+    getPositioningStyle,
+    isSticky,
+    hasReachedInstagram
   };
 };

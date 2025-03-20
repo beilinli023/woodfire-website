@@ -12,7 +12,7 @@ const SidebarNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   
-  const { getPositioningStyle } = useSidebarPosition(navRef);
+  const { getPositioningStyle, isSticky, hasReachedInstagram } = useSidebarPosition(navRef);
 
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -35,6 +35,8 @@ const SidebarNav = () => {
       ref={navRef}
       className="py-8 px-4 w-full"
       style={getPositioningStyle()}
+      data-sticky={isSticky ? "true" : "false"}
+      data-reached-instagram={hasReachedInstagram ? "true" : "false"}
     >
       <nav className="flex flex-col space-y-6">
         {/* Regular nav items */}
