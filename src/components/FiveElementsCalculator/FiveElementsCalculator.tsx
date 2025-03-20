@@ -22,15 +22,26 @@ const FiveElementsCalculator = ({
   const [step, setStep] = useState<'intro' | 'input' | 'calculating' | 'result'>('intro');
   const [birthDate, setBirthDate] = useState<Date | undefined>(undefined);
   const [birthHour, setBirthHour] = useState<string>('');
+  const [unknownBirthHour, setUnknownBirthHour] = useState<boolean>(false);
   const [progress, setProgress] = useState(0);
   const [element, setElement] = useState<Element | null>(null);
   const { toast } = useToast();
 
   const handleStartCalculation = () => {
-    if (!birthDate || !birthHour) {
+    if (!birthDate) {
       toast({
         title: "信息不完整",
-        description: "请选择您的出生日期和时辰",
+        description: "请选择您的出生日期",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // 检查出生时辰，如果不知道时辰则允许继续
+    if (!birthHour && !unknownBirthHour) {
+      toast({
+        title: "信息不完整",
+        description: "请选择您的出生时辰或勾选'我不知道我的出生时辰'",
         variant: "destructive"
       });
       return;
@@ -47,7 +58,9 @@ const FiveElementsCalculator = ({
       
       if (currentProgress >= 100) {
         clearInterval(interval);
-        const calculatedElement = calculateElement(birthDate, birthHour);
+        // 如果不知道时辰，使用空字符串作为默认值
+        const hourToUse = unknownBirthHour ? '' : birthHour;
+        const calculatedElement = calculateElement(birthDate, hourToUse);
         setElement(calculatedElement);
         setStep('result');
       }
@@ -67,6 +80,7 @@ const FiveElementsCalculator = ({
       setStep('intro');
       setBirthDate(undefined);
       setBirthHour('');
+      setUnknownBirthHour(false);
       setProgress(0);
       setElement(null);
     }
@@ -95,6 +109,8 @@ const FiveElementsCalculator = ({
             setBirthDate={setBirthDate}
             birthHour={birthHour}
             setBirthHour={setBirthHour}
+            unknownBirthHour={unknownBirthHour}
+            setUnknownBirthHour={setUnknownBirthHour}
             onBack={() => setStep('intro')}
             onCalculate={handleStartCalculation}
           />

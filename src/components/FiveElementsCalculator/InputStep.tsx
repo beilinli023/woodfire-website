@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 import { chineseHours } from './fiveElementsData';
 
 interface InputStepProps {
@@ -13,6 +14,8 @@ interface InputStepProps {
   setBirthHour: (hour: string) => void;
   onBack: () => void;
   onCalculate: () => void;
+  unknownBirthHour: boolean;
+  setUnknownBirthHour: (unknown: boolean) => void;
 }
 
 const InputStep: React.FC<InputStepProps> = ({ 
@@ -21,7 +24,9 @@ const InputStep: React.FC<InputStepProps> = ({
   birthHour, 
   setBirthHour, 
   onBack, 
-  onCalculate 
+  onCalculate,
+  unknownBirthHour,
+  setUnknownBirthHour
 }) => {
   const currentYear = new Date().getFullYear();
   const [year, setYear] = useState<string>(birthDate ? birthDate.getFullYear().toString() : '');
@@ -53,6 +58,15 @@ const InputStep: React.FC<InputStepProps> = ({
       setBirthDate(undefined);
     }
   }, [year, month, day, setBirthDate]);
+
+  // 处理复选框变化
+  const handleCheckboxChange = (checked: boolean) => {
+    setUnknownBirthHour(checked);
+    if (checked) {
+      // 如果选择了"不知道时辰"，清空已选择的时辰
+      setBirthHour('');
+    }
+  };
   
   return (
     <Card>
@@ -113,7 +127,11 @@ const InputStep: React.FC<InputStepProps> = ({
         
         <div className="space-y-2">
           <Label htmlFor="birthHour">出生时辰</Label>
-          <Select value={birthHour} onValueChange={setBirthHour}>
+          <Select 
+            value={birthHour} 
+            onValueChange={setBirthHour}
+            disabled={unknownBirthHour}
+          >
             <SelectTrigger className="w-full" id="birthHour">
               <SelectValue placeholder="选择时辰" />
             </SelectTrigger>
@@ -126,6 +144,20 @@ const InputStep: React.FC<InputStepProps> = ({
             </SelectContent>
           </Select>
         </div>
+
+        <div className="flex items-center space-x-2 pt-2">
+          <Checkbox 
+            id="unknown-birth-hour" 
+            checked={unknownBirthHour} 
+            onCheckedChange={handleCheckboxChange}
+          />
+          <Label 
+            htmlFor="unknown-birth-hour" 
+            className="text-sm font-normal cursor-pointer"
+          >
+            我不知道我的出生时辰
+          </Label>
+        </div>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button 
@@ -137,7 +169,7 @@ const InputStep: React.FC<InputStepProps> = ({
         <Button 
           className="bg-amber-600 hover:bg-amber-700"
           onClick={onCalculate}
-          disabled={!year || !month || !day || !birthHour}
+          disabled={!year || !month || !day || (!birthHour && !unknownBirthHour)}
         >
           开始测算
         </Button>

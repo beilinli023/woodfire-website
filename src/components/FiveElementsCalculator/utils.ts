@@ -12,6 +12,8 @@ export const calculateElement = (date: Date | undefined, hour: string): Element 
   // Simple algorithm to determine element (in a real app, this would be more complex based on actual Chinese astrology)
   const yearSum = year % 10;
   const monthDay = (month + day) % 5;
+  
+  // 如果没有提供出生时辰(hour为空字符串)，则不考虑时辰的影响，使用默认值0
   const hourEffect = hour ? parseInt(hour.split('-')[0]) % 5 : 0;
   
   const elementIndex = (yearSum + monthDay + hourEffect) % 5;
