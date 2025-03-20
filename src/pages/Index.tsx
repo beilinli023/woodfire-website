@@ -79,7 +79,7 @@ const Index = () => {
       <Hero />
       
       <div className="flex flex-row w-full relative">
-        {/* Sidebar Navigation Space */}
+        {/* Sidebar Navigation */}
         <div className="w-[15%]">
           <SidebarNav />
         </div>

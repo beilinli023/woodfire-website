@@ -69,7 +69,7 @@ const Product = () => {
       
       <div className="max-w-screen-xl mx-auto px-4 flex">
         {/* Left sidebar */}
-        <div className="hidden md:block md:w-1/5 h-full bg-black/50 backdrop-blur-md sticky top-16">
+        <div className="hidden md:block md:w-1/5 h-full bg-black/50 backdrop-blur-md">
           <SidebarNav />
         </div>
         
