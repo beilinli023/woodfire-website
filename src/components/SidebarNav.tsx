@@ -1,10 +1,9 @@
-
 import React, { useRef, useState } from 'react';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 import NavLink from './SidebarNav/NavLink';
 import { navItems } from './SidebarNav/navItems';
 import { useSidebarPosition } from './SidebarNav/useSidebarPosition';
-import HealthAssessmentCard from './HealthAssessmentCard';
+import HealthAssessmentCard from './HealthAssessment';
 
 const SidebarNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
