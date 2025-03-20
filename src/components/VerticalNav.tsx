@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -7,6 +6,11 @@ import FiveElementsCalculator from './FiveElementsCalculator';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 
 const navItems = [
+  {
+    title: '所有商品',
+    emoji: '🛍️',
+    path: '/products'
+  },
   {
     title: 'KEEP MORE',
     emoji: '🌟',

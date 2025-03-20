@@ -79,9 +79,9 @@ const Index = () => {
       <Navbar />
       <Hero />
       
-      <div className="flex flex-row w-full">
-        {/* Fixed Sidebar Navigation - 15% width */}
-        <div className="w-[15%] fixed left-0 top-[80px] h-screen z-20">
+      <div className="flex flex-row w-full relative">
+        {/* Fixed Sidebar Navigation - 15% width, stops before footer */}
+        <div className="w-[15%] fixed left-0 top-[80px] bottom-auto h-auto max-h-[calc(100vh-80px)] overflow-y-auto z-20">
           <VerticalNav />
         </div>
         
