@@ -17,6 +17,7 @@ import About from "./pages/About";
 import Charity from "./pages/Charity";
 import CharityProjects from "./pages/CharityProjects";
 import CharityProjectDetail from "./pages/CharityProjectDetail";
+import Products from "./pages/Products";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/charity" element={<Charity />} />
             <Route path="/charity/projects" element={<CharityProjects />} />
             <Route path="/charity/projects/:id" element={<CharityProjectDetail />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/categories/health" element={<Index />} />
             <Route path="/categories/lucky" element={<Index />} />
             <Route path="/categories/bracelets" element={<Index />} />
