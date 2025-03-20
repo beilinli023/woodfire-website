@@ -26,7 +26,7 @@ const StorySection = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 rounded-3xl">
       <div className="max-w-screen-xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-12">我们的故事</h2>
         
