@@ -36,7 +36,11 @@ export interface Product {
   description?: string[];
   specifications?: Specification[];
   usageGuide?: string[];
+  usageGuideImages?: string[]; // 新增：使用指南对应的图片
+  usageGuideImageDescriptions?: string[]; // 新增：使用指南图片描述
+  usageScenesImages?: string[]; // 新增：适用场景图片
+  usageScenesDescriptions?: string[]; // 新增：适用场景描述
   careInstructions?: string[];
   reviews: Review[];
-  createdAt?: number; // 添加可选的 createdAt 属性
+  createdAt?: number;
 }

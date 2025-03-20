@@ -58,6 +58,32 @@ export const products: Product[] = [
       "建议定期在月光下静置一晚，为护身珠充能。",
       "使用专用的绒布袋存放，避免与其他首饰磕碰造成损伤。"
     ],
+    usageGuideImages: [
+      "https://images.unsplash.com/photo-1578999766765-3bcdfad45d6e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?q=80&w=2070",
+      "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?q=80&w=2071",
+      "https://images.unsplash.com/photo-1551893665-f843f600794e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1585222515068-7dbd1127b531?q=80&w=2071"
+    ],
+    usageGuideImageDescriptions: [
+      "点香祈福：选择安静环境，点燃清香，诚心祈愿",
+      "正确佩戴：将护身珠轻轻佩戴于手腕，注意避免接触液体",
+      "适应过程：初次佩戴可能需要一段时间适应，请保持耐心",
+      "月光充能：满月之夜，将护身珠置于月光下吸收自然能量",
+      "妥善保存：不佩戴时，用绒布袋包裹存放，避免磕碰"
+    ],
+    usageScenesImages: [
+      "https://images.unsplash.com/photo-1565728744382-61accd4aa148?q=80&w=2073",
+      "https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=2078",
+      "https://images.unsplash.com/photo-1536623975707-c4b3b2af565d?q=80&w=2070",
+      "https://images.unsplash.com/photo-1569937372893-3299b044d702?q=80&w=1974"
+    ],
+    usageScenesDescriptions: [
+      "日常穿搭：轻松搭配各种服装风格",
+      "冥想修行：增强精神专注力",
+      "商务场合：提升个人气场与自信",
+      "旅行出行：随身携带，保持平安"
+    ],
     careInstructions: [
       "避免接触水、香水、化妆品等液体",
       "避免高温环境和阳光直射",
