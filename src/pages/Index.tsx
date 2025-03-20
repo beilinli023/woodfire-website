@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -11,6 +10,7 @@ import InstagramSection from '../components/InstagramSection';
 import Footer from '../components/Footer';
 import ProductGrid from '../components/ProductGrid';
 import VerticalNav from '../components/VerticalNav';
+import { products } from '../data/productData';
 
 const popularProducts = [
   {
@@ -46,6 +46,24 @@ const popularProducts = [
     price: '¥499',
     rating: 4,
     category: '脉轮平衡'
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1602362513863-111e4599537e',
+    title: '藏式六字真言护身珠',
+    price: '¥799',
+    originalPrice: '¥999',
+    rating: 5,
+    category: '护身珠'
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1611241893603-3c359704e0ee',
+    title: '喜马拉雅红玛瑙项链',
+    price: '¥1,299',
+    originalPrice: '¥1,599',
+    rating: 4,
+    category: '能量项链'
   }
 ];
 
