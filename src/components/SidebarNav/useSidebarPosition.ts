@@ -10,11 +10,13 @@ export const useSidebarPosition = (
   const [fixedPosition, setFixedPosition] = useState<number | null>(null);
   const [nearFooter, setNearFooter] = useState(false);
   const [footerTop, setFooterTop] = useState(0);
+  const [contentAlignmentOffset, setContentAlignmentOffset] = useState(0);
 
   useEffect(() => {
     const calculatePosition = () => {
       const instagramSection = document.getElementById('instagram-section');
       const footer = document.querySelector('footer');
+      const featuredSection = document.querySelector('section');
       
       // If no footer or navRef not available, return early
       if (!footer || !navRef.current) return;
@@ -31,6 +33,28 @@ export const useSidebarPosition = (
       const navBottom = navbarHeight + navHeight;
       const isNearFooter = currentFooterTop <= navBottom + 20; // 20px buffer
       setNearFooter(isNearFooter);
+
+      // Calculate content alignment - find a suitable section to align with
+      let alignmentOffset = 0;
+      
+      if (featuredSection) {
+        const featuredRect = featuredSection.getBoundingClientRect();
+        const navLastItemPosition = navBottom - 100; // Approximate position of last nav item
+        
+        // If we're scrolled past the featured section and not at footer
+        if (window.scrollY > 100 && !isNearFooter) {
+          // Calculate how much we need to offset to keep the last nav item aligned
+          const idealPosition = featuredRect.bottom;
+          const currentDifference = navLastItemPosition - idealPosition;
+          
+          // Only apply offset when we need to move up (positive difference)
+          if (currentDifference > 0) {
+            alignmentOffset = Math.min(currentDifference, 300); // Cap the offset at 300px
+          }
+        }
+      }
+      
+      setContentAlignmentOffset(alignmentOffset);
 
       // Only do Instagram alignment if the section exists (on home page)
       if (instagramSection) {
@@ -95,7 +119,9 @@ export const useSidebarPosition = (
         height: 'auto',
         maxHeight: 'calc(100vh - 80px)',
         zIndex: 30, // Ensure sidebar appears above other content
-        transform: fixedPosition ? `translateY(${fixedPosition - window.scrollY}px)` : 'none'
+        transform: contentAlignmentOffset > 0 
+          ? `translateY(-${contentAlignmentOffset}px)` 
+          : (fixedPosition ? `translateY(${fixedPosition - window.scrollY}px)` : 'none')
       } as React.CSSProperties;
     }
     

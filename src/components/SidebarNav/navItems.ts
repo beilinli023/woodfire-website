@@ -22,13 +22,13 @@ export const navItems: NavItem[] = [
     path: '/categories/lucky'
   },
   {
-    title: 'KEEP MORE',
-    emoji: '🌟',
-    path: '#'
-  },
-  {
     title: 'BLESSING',
     emoji: '💎',
     path: '/blessing'
+  },
+  {
+    title: 'KEEP MORE',
+    emoji: '🌟',
+    path: '#'
   }
 ];
