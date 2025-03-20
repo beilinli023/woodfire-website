@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import BackButton from "@/components/BackButton";
 import Navbar from "@/components/Navbar";
 import SidebarNav from "@/components/SidebarNav";
 import ProductImageGallery from "@/components/product/ProductImageGallery";
@@ -37,6 +38,7 @@ const Product = () => {
           {/* Main content */}
           <div className="w-full md:w-[85%] pb-16 px-4">
             <div className="py-8">
+              <BackButton className="mb-6" />
               <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {/* Product Image Gallery */}
                 <ProductImageGallery images={product.images} />

@@ -1,4 +1,3 @@
-
 import { ChevronRight } from 'lucide-react';
 import HerbProcessCarousel from '@/components/HerbProcessCarousel';
 import FeaturedRecommendation from '@/components/FeaturedRecommendation';
@@ -75,7 +74,7 @@ const FeaturedSection = () => {
       description: "切片过程：精确切割，确保最佳药效释放"
     },
     {
-      src: "public/lovable-uploads/fd364845-762c-4d8a-8b8f-43668a8ea607.png",
+      src: "/lovable-uploads/fd364845-762c-4d8a-8b8f-43668a8ea607.png",
       alt: "制作过程",
       description: "制作过程：手工编织，每一颗珠子都经过严格筛选"
     }
@@ -83,12 +82,7 @@ const FeaturedSection = () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto">
-      <div className="flex justify-between items-center mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white">精选系列</h2>
-        <a href="/collections" className="flex items-center text-white hover:text-gray-300 transition-colors">
-          查看全部 <ChevronRight size={16} className="ml-1" />
-        </a>
-      </div>
+      {/* 标题区域已移除 */}
       
       <div className="flex flex-col space-y-12">
         <div>

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
+import BackButton from "@/components/BackButton";
 import SidebarNav from "@/components/SidebarNav";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -166,7 +167,7 @@ const Products = () => {
 
   useEffect(() => {
     setProductsCount(products.length);
-  }, [products]);
+  }, []);
 
   const handleSortChange = (value) => {
     setSortOption(value);
@@ -184,6 +185,7 @@ const Products = () => {
           
           <div className="w-full md:w-[85%] pb-16 px-4">
             <div className="max-w-screen-xl mx-auto">
+              <BackButton className="mb-4" />
               <div className="flex justify-between items-center mb-8">
                 <h1 className="text-2xl font-bold">{productsCount} 件产品</h1>
                 

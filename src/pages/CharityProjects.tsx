@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import BackButton from '@/components/BackButton';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Separator } from '@/components/ui/separator';
@@ -71,6 +72,7 @@ const CharityProjects = () => {
           
           {/* Main Content */}
           <div className="w-full md:w-[85%] px-4 md:px-8 py-8 text-white">
+            <BackButton className="mb-4" />
             <h1 className="text-3xl md:text-4xl font-bold mb-6">慈善项目</h1>
             <Separator className="mb-8 bg-gray-700" />
             

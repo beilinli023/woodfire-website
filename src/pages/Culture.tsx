@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BackButton from '@/components/BackButton';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SidebarNav from '@/components/SidebarNav';
@@ -39,6 +40,7 @@ const Culture = () => {
         </div>
         
         <div className="w-full md:w-[85%] px-4 sm:px-6 lg:px-8 pb-16">
+          <BackButton className="mb-4" />
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
               <BreadcrumbItem>

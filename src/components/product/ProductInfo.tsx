@@ -65,7 +65,9 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       <ProductPrice 
         price={product.price} 
         originalPrice={product.originalPrice} 
-        discount={product.discount} 
+        discount={product.discount}
+        fragrance={product.fragrance}
+        craftsmanship={product.craftsmanship}
       />
 
       {/* Variants Selection */}

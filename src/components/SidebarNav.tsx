@@ -33,10 +33,15 @@ const SidebarNav = () => {
   return (
     <div 
       ref={navRef}
-      className="py-8 px-4 w-full"
-      style={getPositioningStyle()}
+      className="py-8 px-4 w-full md:w-auto" // 移除全宽设置
+      style={{
+        ...getPositioningStyle(),
+        pointerEvents: 'none', // 整个侧边栏禁用指针事件
+        width: 'auto', // 宽度自适应内容
+        maxWidth: '15%' // 最大宽度与布局一致
+      }}
     >
-      <nav className="flex flex-col space-y-6">
+      <nav className="flex flex-col space-y-6 w-auto">
         {/* Regular nav items */}
         {navItems.map((item, index) => {
           if (item.title === 'KEEP MORE') {

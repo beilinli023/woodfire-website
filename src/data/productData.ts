@@ -14,6 +14,8 @@ export const products: Product[] = [
     reviewCount: 128,
     soldCount: 368,
     createdAt: 1708502400000, // 2024-02-21
+    fragrance: "沉香、白檀、乌木",
+    craftsmanship: "烧",
     images: [
       "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -72,12 +74,7 @@ export const products: Product[] = [
       "月光充能：满月之夜，将护身珠置于月光下吸收自然能量",
       "妥善保存：不佩戴时，用绒布袋包裹存放，避免磕碰"
     ],
-    usageScenesImages: [
-      "https://images.unsplash.com/photo-1565728744382-61accd4aa148?q=80&w=2073",
-      "https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=2078",
-      "https://images.unsplash.com/photo-1536623975707-c4b3b2af565d?q=80&w=2070",
-      "https://images.unsplash.com/photo-1569937372893-3299b044d702?q=80&w=1974"
-    ],
+
     usageScenesDescriptions: [
       "日常穿搭：轻松搭配各种服装风格",
       "冥想修行：增强精神专注力",
@@ -165,6 +162,8 @@ export const products: Product[] = [
     reviewCount: 85,
     soldCount: 213,
     createdAt: 1709020800000, // 2024-02-27
+    fragrance: "红玛瑙、檀香、琥珀",
+    craftsmanship: "手工打磨",
     images: [
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
       "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
@@ -191,6 +190,8 @@ export const products: Product[] = [
     reviewCount: 63,
     soldCount: 175,
     createdAt: 1708675200000, // 2024-02-23
+    fragrance: "五行配香：土、木、水、火、金",
+    craftsmanship: "传统编织",
     images: [
       "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -297,6 +298,8 @@ export const products: Product[] = [
     reviewCount: 72,
     soldCount: 198,
     createdAt: 1710057600000, // 2024-03-10
+    fragrance: "黑曜石、檀香",
+    craftsmanship: "雕刻",
     images: [
       "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
       "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
@@ -325,6 +328,8 @@ export const products: Product[] = [
     reviewCount: 48,
     soldCount: 105,
     createdAt: 1710489600000, // 2024-03-15
+    fragrance: "绿松石、藏香",
+    craftsmanship: "手工编织",
     images: [
       "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -405,6 +410,8 @@ export const products: Product[] = [
     reviewCount: 39,
     soldCount: 91,
     createdAt: 1711584000000, // 2024-03-28
+    fragrance: "波罗的海琥珀、阿木尔香",
+    craftsmanship: "精工制作",
     images: [
       "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -432,6 +439,8 @@ export const products: Product[] = [
     reviewCount: 53,
     soldCount: 124,
     createdAt: 1708848000000, // 2024-02-25
+    fragrance: "黄水晶、琥珀香",
+    craftsmanship: "磨光工艺",
     images: [
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
       "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",

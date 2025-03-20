@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
+import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
 import SidebarNav from '@/components/SidebarNav';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
@@ -17,6 +18,7 @@ const Blessing = () => {
         </div>
         
         <div className="w-full md:w-[85%] px-4 sm:px-6 lg:px-8 pb-16">
+          <BackButton className="mb-4" />
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
               <BreadcrumbItem>

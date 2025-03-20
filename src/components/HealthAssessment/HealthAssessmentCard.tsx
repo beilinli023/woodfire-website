@@ -38,7 +38,7 @@ const HealthAssessmentCard = ({ open, onOpenChange }: HealthAssessmentCardProps 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <span className="cursor-pointer">KEEP HEALTH 🧘‍♂️</span>
+        <span className="cursor-pointer"></span>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         {step === 'questions' ? (

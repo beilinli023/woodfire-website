@@ -12,27 +12,31 @@ interface NavLinkProps {
 const NavLink = ({ item, onClick, isSpecial = false }: NavLinkProps) => {
   if (isSpecial) {
     return (
-      <a 
-        href="#" 
-        onClick={onClick}
-        className="flex items-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
-      >
-        <span className="flex items-center">
-          {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
-        </span>
-      </a>
+      <div className="inline-block" style={{ pointerEvents: 'auto' }}>
+        <a 
+          href="#" 
+          onClick={onClick}
+          className="inline-flex items-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
+        >
+          <span className="flex items-center">
+            {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
+          </span>
+        </a>
+      </div>
     );
   }
 
   return (
-    <Link 
-      to={item.path} 
-      className="flex items-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
-    >
-      <span className="flex items-center">
-        {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
-      </span>
-    </Link>
+    <div className="inline-block" style={{ pointerEvents: 'auto' }}>
+      <Link 
+        to={item.path} 
+        className="inline-flex items-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
+      >
+        <span className="flex items-center">
+          {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
+        </span>
+      </Link>
+    </div>
   );
 };
 

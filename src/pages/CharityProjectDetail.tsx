@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import BackButton from '@/components/BackButton';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Separator } from '@/components/ui/separator';
@@ -172,9 +173,7 @@ const CharityProjectDetail = () => {
           {/* Main Content */}
           <div className="w-full md:w-[85%] px-4 md:px-8 py-8 text-white">
             <div className="mb-6">
-              <Link to="/charity" className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors">
-                <ArrowLeft size={16} className="mr-2" /> 返回慈善项目
-              </Link>
+              <BackButton className="mb-4" />
             </div>
             
             <h1 className="text-3xl md:text-4xl font-bold mb-6">{project.title}</h1>

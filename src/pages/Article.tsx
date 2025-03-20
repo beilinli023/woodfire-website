@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import BackButton from '@/components/BackButton';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SidebarNav from '@/components/SidebarNav';
@@ -66,6 +67,7 @@ const Article = () => {
         
         {/* Main Content */}
         <div className="w-full md:w-[85%] px-4 sm:px-6 lg:px-8 pb-16">
+          <BackButton className="mb-4" />
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -96,9 +98,7 @@ const Article = () => {
             </div>
             
             <div className="mt-12 pt-8 border-t border-gray-800">
-              <Link to={`/culture/${category}`} className="text-amber-400 hover:text-amber-300 transition-colors">
-                &larr; 返回{categoryTitle}文章列表
-              </Link>
+              {/* 根据需求移除了底部的返回链接，只保留顶部返回按钮 */}
             </div>
           </article>
         </div>

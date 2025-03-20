@@ -38,9 +38,10 @@ export interface Product {
   usageGuide?: string[];
   usageGuideImages?: string[]; // 新增：使用指南对应的图片
   usageGuideImageDescriptions?: string[]; // 新增：使用指南图片描述
-  usageScenesImages?: string[]; // 新增：适用场景图片
-  usageScenesDescriptions?: string[]; // 新增：适用场景描述
+  usageScenesDescriptions?: string[]; // 适用场景文字描述
   careInstructions?: string[];
   reviews: Review[];
   createdAt?: number;
+  fragrance?: string; // 香方信息，如：沉香、白檀、乌木
+  craftsmanship?: string; // 工艺信息，如：烧
 }
