@@ -89,7 +89,12 @@ type HealthData = {
   [key: string]: string;
 };
 
-const HealthAssessmentCard = () => {
+interface HealthAssessmentCardProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const HealthAssessmentCard = ({ open, onOpenChange }: HealthAssessmentCardProps = {}) => {
   const [healthData, setHealthData] = useState<HealthData>({});
   const [step, setStep] = useState<'questions' | 'recommendation'>('questions');
   const [recommendedProduct, setRecommendedProduct] = useState<any>(null);
@@ -165,7 +170,7 @@ const HealthAssessmentCard = () => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <span className="cursor-pointer">KEEP HEALTH 🧘‍♂️</span>
       </DialogTrigger>

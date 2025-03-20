@@ -4,9 +4,11 @@ import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog
 import NavLink from './SidebarNav/NavLink';
 import { navItems } from './SidebarNav/navItems';
 import { useSidebarPosition } from './SidebarNav/useSidebarPosition';
+import HealthAssessmentCard from './HealthAssessmentCard';
 
 const SidebarNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
+  const [showHealthAssessment, setShowHealthAssessment] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   
   const { getPositioningStyle } = useSidebarPosition(navRef);
@@ -14,6 +16,11 @@ const SidebarNav = () => {
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setShowEmailSubscription(true);
+  };
+
+  const handleKeepHealthClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowHealthAssessment(true);
   };
 
   return (
@@ -24,21 +31,34 @@ const SidebarNav = () => {
     >
       <nav className="flex flex-col space-y-6">
         {/* Regular nav items */}
-        {navItems.map((item, index) => (
-          item.title === 'KEEP MORE' ? (
-            <NavLink 
-              key={index}
-              item={item}
-              onClick={handleKeepMoreClick}
-              isSpecial={true}
-            />
-          ) : (
-            <NavLink 
-              key={index} 
-              item={item}
-            />
-          )
-        ))}
+        {navItems.map((item, index) => {
+          if (item.title === 'KEEP MORE') {
+            return (
+              <NavLink 
+                key={index}
+                item={item}
+                onClick={handleKeepMoreClick}
+                isSpecial={true}
+              />
+            );
+          } else if (item.title === 'KEEP HEALTH') {
+            return (
+              <NavLink 
+                key={index}
+                item={item}
+                onClick={handleKeepHealthClick}
+                isSpecial={true}
+              />
+            );
+          } else {
+            return (
+              <NavLink 
+                key={index} 
+                item={item}
+              />
+            );
+          }
+        })}
       </nav>
 
       {/* Email Subscription Dialog */}
@@ -46,6 +66,9 @@ const SidebarNav = () => {
         open={showEmailSubscription} 
         onOpenChange={setShowEmailSubscription} 
       />
+      
+      {/* Health Assessment Dialog */}
+      <HealthAssessmentCard open={showHealthAssessment} onOpenChange={setShowHealthAssessment} />
     </div>
   );
 };
