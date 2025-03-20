@@ -1,6 +1,5 @@
 
 import { Product } from "@/types/product";
-import Image from "@/components/ui/image";
 
 interface ProductDescriptionProps {
   product: Product;
