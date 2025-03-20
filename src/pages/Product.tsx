@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import VerticalNav from "@/components/VerticalNav";
+import SidebarNav from "@/components/SidebarNav";
 import ProductImageGallery from "@/components/product/ProductImageGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 import ProductDescription from "@/components/product/ProductDescription";
@@ -70,7 +70,7 @@ const Product = () => {
       <div className="max-w-screen-xl mx-auto px-4 flex">
         {/* Left sidebar */}
         <div className="hidden md:block md:w-1/5 h-full bg-black/50 backdrop-blur-md sticky top-16">
-          <VerticalNav />
+          <SidebarNav />
         </div>
         
         {/* Main content */}
