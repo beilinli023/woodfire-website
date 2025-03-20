@@ -1,17 +1,15 @@
 
-import React, { useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 import NavLink from './SidebarNav/NavLink';
 import { navItems } from './SidebarNav/navItems';
 import { useSidebarPosition } from './SidebarNav/useSidebarPosition';
 
 const SidebarNav = () => {
-  const location = useLocation();
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   
-  const { getPositioningStyle, isSticky, hasReachedInstagram } = useSidebarPosition(navRef);
+  const { getPositioningStyle } = useSidebarPosition(navRef);
 
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
