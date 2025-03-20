@@ -1,10 +1,10 @@
+
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import FiveElementsSection from '../components/FiveElementsSection';
 import FeaturedSection from '../components/FeaturedSection';
-import CategorySection from '../components/CategorySection';
-import StorySection from '../components/StorySection';
+import FeaturedRecommendation from '../components/FeaturedRecommendation';
 import TestimonialSection from '../components/TestimonialSection';
 import InstagramSection from '../components/InstagramSection';
 import Footer from '../components/Footer';
@@ -67,43 +67,6 @@ const popularProducts = [
   }
 ];
 
-const newProducts = [
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1458668383970-8ddd3927deed',
-    title: '珊瑚红绒面手串',
-    price: '¥699',
-    rating: 5,
-    category: '限量系列'
-  },
-  {
-    id: 6,
-    image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
-    title: '尼泊尔手工铜铃',
-    price: '¥399',
-    originalPrice: '¥599',
-    rating: 4,
-    category: '冥想工具'
-  },
-  {
-    id: 7,
-    image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07',
-    title: '波罗的海琥珀项链',
-    price: '¥1,299',
-    rating: 5,
-    category: '能量项链'
-  },
-  {
-    id: 8,
-    image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb',
-    title: '藏式六字真言手环',
-    price: '¥799',
-    originalPrice: '¥999',
-    rating: 4,
-    category: '能量手环'
-  }
-];
-
 const Index = () => {
   useEffect(() => {
     // Scroll to top when component mounts
@@ -126,9 +89,6 @@ const Index = () => {
           <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
-          <CategorySection />
-          <ProductGrid title="新品上市" viewAllLink="/products/new" products={newProducts} />
-          <StorySection />
           <TestimonialSection />
           <InstagramSection />
         </div>

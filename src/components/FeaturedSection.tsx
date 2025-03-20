@@ -1,6 +1,7 @@
 
 import { ChevronRight } from 'lucide-react';
 import HerbProcessCarousel from '@/components/HerbProcessCarousel';
+import FeaturedRecommendation from '@/components/FeaturedRecommendation';
 
 interface FeaturedItemProps {
   image: string;
@@ -96,6 +97,8 @@ const FeaturedSection = () => {
             <HerbProcessCarousel images={herbProcessImages} autoplayInterval={2000} />
           </div>
         </div>
+        
+        <FeaturedRecommendation />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="grid grid-cols-1 gap-6">
