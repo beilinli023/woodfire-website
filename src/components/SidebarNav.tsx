@@ -1,13 +1,16 @@
+
 import React, { useRef, useState } from 'react';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 import NavLink from './SidebarNav/NavLink';
 import { navItems } from './SidebarNav/navItems';
 import { useSidebarPosition } from './SidebarNav/useSidebarPosition';
 import HealthAssessmentCard from './HealthAssessment';
+import FiveElementsCalculator from './FiveElementsCalculator';
 
 const SidebarNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
   const [showHealthAssessment, setShowHealthAssessment] = useState(false);
+  const [showFiveElements, setShowFiveElements] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   
   const { getPositioningStyle } = useSidebarPosition(navRef);
@@ -20,6 +23,11 @@ const SidebarNav = () => {
   const handleKeepHealthClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setShowHealthAssessment(true);
+  };
+
+  const handleKeepLuckyClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowFiveElements(true);
   };
 
   return (
@@ -49,6 +57,15 @@ const SidebarNav = () => {
                 isSpecial={true}
               />
             );
+          } else if (item.title === 'KEEP LUCKY') {
+            return (
+              <NavLink 
+                key={index}
+                item={item}
+                onClick={handleKeepLuckyClick}
+                isSpecial={true}
+              />
+            );
           } else {
             return (
               <NavLink 
@@ -60,14 +77,18 @@ const SidebarNav = () => {
         })}
       </nav>
 
-      {/* Email Subscription Dialog */}
+      {/* Dialogs */}
       <EmailSubscriptionDialog 
         open={showEmailSubscription} 
         onOpenChange={setShowEmailSubscription} 
       />
       
-      {/* Health Assessment Dialog */}
-      <HealthAssessmentCard open={showHealthAssessment} onOpenChange={setShowHealthAssessment} />
+      <HealthAssessmentCard 
+        open={showHealthAssessment} 
+        onOpenChange={setShowHealthAssessment} 
+      />
+
+      <FiveElementsCalculator />
     </div>
   );
 };
