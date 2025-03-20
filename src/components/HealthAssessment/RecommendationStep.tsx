@@ -16,6 +16,9 @@ const RecommendationStep: React.FC<RecommendationStepProps> = ({
   product,
   onAddToCart
 }) => {
+  // 将建议文本按段落分割，以便更好地显示
+  const textParagraphs = recommendationText.split('\n\n');
+
   return (
     <Card>
       <CardHeader>
@@ -23,7 +26,9 @@ const RecommendationStep: React.FC<RecommendationStepProps> = ({
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
-          <p className="text-sm leading-relaxed">{recommendationText}</p>
+          {textParagraphs.map((paragraph, index) => (
+            <p key={index} className="text-sm leading-relaxed mb-2">{paragraph}</p>
+          ))}
         </div>
         
         {product && (
