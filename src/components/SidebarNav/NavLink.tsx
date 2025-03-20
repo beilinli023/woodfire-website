@@ -15,11 +15,9 @@ const NavLink = ({ item, onClick, isSpecial = false }: NavLinkProps) => {
       <a 
         href="#" 
         onClick={onClick}
-        className="flex items-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
+        className="flex items-center justify-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
       >
-        <span className="flex items-center">
-          {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
-        </span>
+        {item.emoji && <span className="text-2xl">{item.emoji}</span>}
       </a>
     );
   }
@@ -27,11 +25,9 @@ const NavLink = ({ item, onClick, isSpecial = false }: NavLinkProps) => {
   return (
     <Link 
       to={item.path} 
-      className="flex items-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
+      className="flex items-center justify-center text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
     >
-      <span className="flex items-center">
-        {item.title} {item.emoji && <span className="ml-2">{item.emoji}</span>}
-      </span>
+      {item.emoji && <span className="text-2xl">{item.emoji}</span>}
     </Link>
   );
 };

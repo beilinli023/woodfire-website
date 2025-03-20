@@ -24,7 +24,7 @@ const SidebarNav = () => {
       className="py-8 px-4 w-full"
       style={getPositioningStyle()}
     >
-      <nav className="flex flex-col space-y-6">
+      <nav className="flex flex-col space-y-8">
         {/* Regular nav items */}
         {navItems.map((item, index) => (
           item.title === 'KEEP MORE' ? (
