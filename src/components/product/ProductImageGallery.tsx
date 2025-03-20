@@ -1,12 +1,5 @@
 
 import { useState } from "react";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
 interface ProductImageGalleryProps {
@@ -18,29 +11,14 @@ const ProductImageGallery = ({ images }: ProductImageGalleryProps) => {
 
   return (
     <div className="space-y-4">
-      {/* Main image carousel */}
-      <Carousel className="w-full">
-        <CarouselContent>
-          {images.map((image, index) => (
-            <CarouselItem key={index}>
-              <div className="aspect-square overflow-hidden rounded-lg bg-gray-900">
-                <img
-                  src={image}
-                  alt={`Product image ${index + 1}`}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <div className="flex items-center justify-center gap-2 mt-2">
-          <CarouselPrevious className="relative inset-0 translate-y-0 bg-black/50 backdrop-blur-sm text-white hover:bg-black/70" />
-          <span className="text-sm text-gray-400">
-            {activeIndex + 1} / {images.length}
-          </span>
-          <CarouselNext className="relative inset-0 translate-y-0 bg-black/50 backdrop-blur-sm text-white hover:bg-black/70" />
-        </div>
-      </Carousel>
+      {/* Main image display */}
+      <div className="aspect-square overflow-hidden rounded-lg bg-gray-900">
+        <img
+          src={images[activeIndex]}
+          alt={`Product image ${activeIndex + 1}`}
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
 
       {/* Thumbnail navigation */}
       <div className="flex gap-2 overflow-x-auto pb-2">
