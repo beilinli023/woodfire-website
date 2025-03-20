@@ -13,6 +13,10 @@ import Product from "./pages/Product";
 import Culture from "./pages/Culture";
 import ArticleList from "./pages/ArticleList";
 import Article from "./pages/Article";
+import About from "./pages/About";
+import Charity from "./pages/Charity";
+import CharityProjects from "./pages/CharityProjects";
+import CharityProjectDetail from "./pages/CharityProjectDetail";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +34,10 @@ const App = () => (
             <Route path="/culture/:category" element={<ArticleList />} />
             <Route path="/culture/:category/:articleId" element={<Article />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/charity" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/charity" element={<Charity />} />
+            <Route path="/charity/projects" element={<CharityProjects />} />
+            <Route path="/charity/projects/:id" element={<CharityProjectDetail />} />
             <Route path="/categories/health" element={<Index />} />
             <Route path="/categories/lucky" element={<Index />} />
             <Route path="/categories/bracelets" element={<Index />} />
