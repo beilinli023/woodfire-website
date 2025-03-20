@@ -78,19 +78,19 @@ const Index = () => {
       <Hero />
       
       <div className="flex flex-row w-full relative">
-        {/* Fixed Sidebar Navigation with adjusted height to not overlap footer */}
-        <div className="w-[15%] fixed left-0 top-[80px] bottom-auto h-auto max-h-[calc(100vh-80px)] overflow-y-auto z-20">
+        {/* Sidebar Navigation Space */}
+        <div className="w-[15%]">
           <VerticalNav />
         </div>
         
         {/* Main Content Area */}
-        <div className="w-[85%] ml-[15%]">
+        <div className="w-[85%]">
           <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
           <StorySection />
           <TestimonialSection />
-          {/* Instagram section is the last section before footer */}
+          {/* Instagram section is the last section before footer - this id is used for navigation positioning */}
           <div id="instagram-section">
             <InstagramSection />
           </div>

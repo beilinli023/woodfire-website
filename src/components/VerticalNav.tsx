@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
@@ -34,28 +33,41 @@ const navItems = [
 
 const VerticalNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
-  const [maxHeight, setMaxHeight] = useState('calc(100vh - 80px)');
+  const navRef = useRef<HTMLDivElement>(null);
+  const [isFixed, setIsFixed] = useState(true);
+  const [navTop, setNavTop] = useState(80); // Default top position (navbar height)
 
   useEffect(() => {
-    const adjustNavHeight = () => {
-      // Get the Instagram section and footer positions
+    const calculatePosition = () => {
       const instagramSection = document.getElementById('instagram-section');
-      if (instagramSection) {
-        const instagramBottom = instagramSection.getBoundingClientRect().bottom;
-        // Set the max height to ensure it doesn't go beyond the Instagram section
-        const newMaxHeight = `${instagramBottom - 80}px`;
-        setMaxHeight(newMaxHeight);
+      if (!instagramSection || !navRef.current) return;
+
+      const instagramTop = instagramSection.getBoundingClientRect().top;
+      const navHeight = navRef.current.offsetHeight;
+      const scrollY = window.scrollY;
+      
+      // Calculate when the bottom of nav would hit the Instagram section
+      const navBottom = 80 + navHeight; // 80px is the navbar height
+      
+      if (instagramTop <= navBottom) {
+        // We've reached the Instagram section, fix the nav at this position
+        setIsFixed(false);
+        setNavTop(instagramTop - navHeight);
+      } else {
+        // We're still above the Instagram section, keep nav fixed at top
+        setIsFixed(true);
+        setNavTop(80);
       }
     };
 
-    // Adjust on initial load and window resize
-    adjustNavHeight();
-    window.addEventListener('resize', adjustNavHeight);
-    window.addEventListener('scroll', adjustNavHeight);
+    // Calculate on initial load and on scroll/resize
+    calculatePosition();
+    window.addEventListener('scroll', calculatePosition);
+    window.addEventListener('resize', calculatePosition);
 
     return () => {
-      window.removeEventListener('resize', adjustNavHeight);
-      window.removeEventListener('scroll', adjustNavHeight);
+      window.removeEventListener('scroll', calculatePosition);
+      window.removeEventListener('resize', calculatePosition);
     };
   }, []);
 
@@ -65,7 +77,17 @@ const VerticalNav = () => {
   };
 
   return (
-    <div className="h-full py-8 px-4" style={{ maxHeight }}>
+    <div 
+      ref={navRef}
+      className="py-8 px-4 w-full"
+      style={{ 
+        position: isFixed ? 'fixed' : 'absolute',
+        top: `${navTop}px`,
+        left: 0,
+        height: 'auto',
+        maxHeight: 'calc(100vh - 80px)'
+      }}
+    >
       <nav className="flex flex-col space-y-6">
         {/* Regular nav items */}
         {navItems.map((item, index) => (
