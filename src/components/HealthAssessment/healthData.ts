@@ -5,7 +5,7 @@ import React from 'react';
 export type HealthQuestion = {
   id: string;
   question: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType<any>;
   options: string[];
 };
 
@@ -13,31 +13,31 @@ export const healthQuestions: HealthQuestion[] = [
   {
     id: 'insomnia',
     question: '你有失眠吗？',
-    icon: <Moon className="h-5 w-5 text-purple-500" />,
+    icon: Moon,
     options: ['从不', '偶尔', '经常', '总是']
   },
   {
     id: 'fatigue',
     question: '你会容易疲劳吗？',
-    icon: <Battery className="h-5 w-5 text-orange-500" />,
+    icon: Battery,
     options: ['从不', '偶尔', '经常', '总是']
   },
   {
     id: 'stress',
     question: '你感到压力大吗？',
-    icon: <Moon className="h-5 w-5 text-blue-500" />,
+    icon: Moon,
     options: ['从不', '偶尔', '经常', '总是']
   },
   {
     id: 'headache',
     question: '你经常头痛吗？',
-    icon: <Moon className="h-5 w-5 text-red-500" />,
+    icon: Moon,
     options: ['从不', '偶尔', '经常', '总是']
   },
   {
     id: 'digestion',
     question: '你有消化问题吗？',
-    icon: <Moon className="h-5 w-5 text-green-500" />,
+    icon: Moon,
     options: ['从不', '偶尔', '经常', '总是']
   }
 ];
