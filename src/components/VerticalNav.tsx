@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 
@@ -43,16 +44,16 @@ const VerticalNav = () => {
       if (!instagramSection || !navRef.current) return;
 
       const instagramTop = instagramSection.getBoundingClientRect().top;
+      const instagramMiddle = instagramTop + instagramSection.getBoundingClientRect().height / 2;
       const navHeight = navRef.current.offsetHeight;
-      const scrollY = window.scrollY;
       
-      // Calculate when the bottom of nav would hit the Instagram section
-      const navBottom = 80 + navHeight; // 80px is the navbar height
+      // Calculate when the middle of nav would align with the middle of Instagram section
+      const navMiddle = 80 + navHeight / 2; // 80px is the navbar height + half of nav height
       
-      if (instagramTop <= navBottom) {
-        // We've reached the Instagram section, fix the nav at this position
+      if (instagramMiddle <= navMiddle) {
+        // We've reached the alignment point, fix the nav at this position
         setIsFixed(false);
-        setNavTop(instagramTop - navHeight);
+        setNavTop(instagramMiddle - navHeight / 2);
       } else {
         // We're still above the Instagram section, keep nav fixed at top
         setIsFixed(true);
@@ -74,6 +75,14 @@ const VerticalNav = () => {
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setShowEmailSubscription(true);
+  };
+
+  const scrollToInstagram = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const instagramSection = document.getElementById('instagram-section');
+    if (instagramSection) {
+      instagramSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -116,6 +125,18 @@ const VerticalNav = () => {
             </Link>
           )
         ))}
+
+        {/* Instagram anchor link */}
+        <a 
+          href="#instagram-section" 
+          onClick={scrollToInstagram}
+          className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
+        >
+          <span className="flex items-center">
+            关注我们 <span className="ml-2">📸</span>
+          </span>
+          <Instagram className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+        </a>
       </nav>
 
       {/* Email Subscription Dialog */}
