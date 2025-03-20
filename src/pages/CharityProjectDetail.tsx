@@ -1,11 +1,18 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Separator } from '@/components/ui/separator';
 import { ArrowLeft, Calendar, MapPin, Users } from 'lucide-react';
 import SidebarNav from '../components/SidebarNav';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
 
 // Detailed charity projects data
 const charityProjectsData = [
@@ -17,6 +24,12 @@ const charityProjectsData = [
     date: "2023年6月",
     location: "尼泊尔加德满都",
     beneficiaries: "500名儿童",
+    gallery: [
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?ixlib=rb-4.0.3"
+    ],
     fullContent: `
       <p>尼泊尔山区的许多儿童由于地理位置偏远，缺乏基础教育设施，无法获得良好的教育。我们的项目旨在改变这一状况，为这些孩子提供学习的机会。</p>
       
@@ -43,6 +56,12 @@ const charityProjectsData = [
     date: "2023年8月",
     location: "西藏拉萨",
     beneficiaries: "150名工匠",
+    gallery: [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1558236714-d1a6333fce68?ixlib=rb-4.0.3"
+    ],
     fullContent: `
       <p>西藏的传统工艺有着悠久的历史和深厚的文化底蕴，但随着现代化进程的加速，许多传统工艺面临失传的危险。我们的项目致力于保护和传承这些珍贵的文化遗产。</p>
       
@@ -60,6 +79,66 @@ const charityProjectsData = [
       
       <p>项目的成功得益于与当地工匠协会和文化机构的紧密合作。未来，我们计划扩大培训规模，覆盖更多的工艺种类，同时探索更广阔的市场，为工匠创造更多的机会。</p>
     `
+  },
+  {
+    id: 3,
+    title: "喜马拉雅地区环保行动",
+    description: "开展喜马拉雅地区的环保教育和实践活动，保护当地的自然环境。",
+    image: "https://images.unsplash.com/photo-1493837417577-baec364a53eb?ixlib=rb-4.0.3",
+    date: "2023年10月",
+    location: "尼泊尔喜马拉雅山区",
+    beneficiaries: "当地3个村庄居民",
+    gallery: [
+      "https://images.unsplash.com/photo-1493837417577-baec364a53eb?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1514539079130-25950c84af65?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1566396084804-47baa8cbfdcb?ixlib=rb-4.0.3"
+    ],
+    fullContent: `
+      <p>喜马拉雅山区是全球生物多样性的重要保护区，但近年来面临气候变化和人类活动的双重威胁。我们的项目旨在通过环保教育和可持续发展实践，保护这一珍贵的自然环境。</p>
+      
+      <p>项目主要内容包括：</p>
+      <ul>
+        <li>开展环保意识教育，提高当地居民的环保意识</li>
+        <li>推广可持续的农业和生活方式，减少对环境的负面影响</li>
+        <li>组织垃圾清理活动，减少塑料等非降解垃圾对环境的污染</li>
+        <li>开展生物多样性监测，了解当地生态系统的变化</li>
+      </ul>
+      
+      <p>通过这个项目，我们已经在三个村庄建立了环保示范点，安装了太阳能设备，减少了对煤炭等化石燃料的依赖。我们还与当地学校合作，将环保教育纳入课程，培养下一代的环保意识。</p>
+      
+      <p>保护环境是一项长期工作，需要持续的投入和坚持。我们计划在未来五年内，逐步扩大项目覆盖范围，影响更多的山区社区，共同守护这片美丽的自然环境。</p>
+    `
+  },
+  {
+    id: 4,
+    title: "尼泊尔地震灾后重建",
+    description: "为尼泊尔地震灾区提供重建支持，帮助当地居民恢复正常生活。",
+    image: "https://images.unsplash.com/photo-1542898560-e9b701d2e65e?ixlib=rb-4.0.3",
+    date: "2022年9月",
+    location: "尼泊尔中部地区",
+    beneficiaries: "200个家庭",
+    gallery: [
+      "https://images.unsplash.com/photo-1542898560-e9b701d2e65e?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1560819400-395d5ee91418?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1563201514-d5a14c929cce?ixlib=rb-4.0.3"
+    ],
+    fullContent: `
+      <p>2015年，尼泊尔发生了7.8级强烈地震，造成了严重的人员伤亡和财产损失。虽然灾后已经过去了几年，但许多地区的重建工作仍在进行中。我们的项目致力于帮助这些地区的居民重建家园和生活。</p>
+      
+      <p>项目主要内容包括：</p>
+      <ul>
+        <li>提供抗震住房建设技术和材料支持</li>
+        <li>为受灾家庭提供生计恢复支持，包括农业技术培训和小额贷款</li>
+        <li>重建社区基础设施，如学校、卫生站和饮水系统</li>
+        <li>开展心理健康服务，帮助灾民克服心理创伤</li>
+      </ul>
+      
+      <p>通过这个项目，我们已经帮助200个家庭重建了抗震住房，恢复了基本生活条件。我们还支持了10个小型企业的创建，为社区创造了就业机会和经济收入。</p>
+      
+      <p>灾后重建不仅是物质上的重建，也是心灵上的重建。我们相信，通过社区的共同努力和外界的支持，受灾地区的居民能够重建更加美好的家园。</p>
+    `
   }
 ];
 
@@ -69,10 +148,15 @@ const CharityProjectDetail = () => {
   
   // Find the project by ID
   const project = charityProjectsData.find(p => p.id === projectId) || charityProjectsData[0];
+  const [selectedImage, setSelectedImage] = useState(project.gallery[0]);
   
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+    // Reset selected image when project changes
+    if (project && project.gallery) {
+      setSelectedImage(project.gallery[0]);
+    }
+  }, [id, project]);
 
   return (
     <div className="min-h-screen bg-black">
@@ -88,8 +172,8 @@ const CharityProjectDetail = () => {
           {/* Main Content */}
           <div className="w-full md:w-[85%] px-4 md:px-8 py-8 text-white">
             <div className="mb-6">
-              <Link to="/charity/projects" className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors">
-                <ArrowLeft size={16} className="mr-2" /> 返回全部项目
+              <Link to="/charity" className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors">
+                <ArrowLeft size={16} className="mr-2" /> 返回慈善项目
               </Link>
             </div>
             
@@ -97,13 +181,37 @@ const CharityProjectDetail = () => {
             <Separator className="mb-8 bg-gray-700" />
             
             <div className="space-y-8">
-              {/* Hero image */}
-              <div className="w-full h-[400px] overflow-hidden rounded-lg">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
+              {/* Main image and gallery */}
+              <div className="space-y-4">
+                <div className="w-full h-[400px] overflow-hidden rounded-lg">
+                  <img 
+                    src={selectedImage} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                {/* Thumbnails gallery */}
+                <Carousel className="w-full max-w-xl mx-auto">
+                  <CarouselContent>
+                    {project.gallery.map((img, index) => (
+                      <CarouselItem key={index} className="basis-1/4">
+                        <div 
+                          className={`h-20 w-full cursor-pointer overflow-hidden rounded ${selectedImage === img ? 'ring-2 ring-amber-500' : ''}`}
+                          onClick={() => setSelectedImage(img)}
+                        >
+                          <img 
+                            src={img} 
+                            alt={`${project.title} 图片 ${index + 1}`} 
+                            className="h-full w-full object-cover transition-all hover:scale-110"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0" />
+                  <CarouselNext className="right-0" />
+                </Carousel>
               </div>
               
               {/* Project info */}

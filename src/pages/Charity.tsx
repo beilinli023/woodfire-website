@@ -1,11 +1,19 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Separator } from '@/components/ui/separator';
 import { ArrowRight } from 'lucide-react';
 import SidebarNav from '../components/SidebarNav';
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "@/components/ui/pagination";
 
 // Sample charity projects data
 const charityProjects = [
@@ -29,13 +37,44 @@ const charityProjects = [
     description: "开展喜马拉雅地区的环保教育和实践活动，保护当地的自然环境。",
     image: "https://images.unsplash.com/photo-1493837417577-baec364a53eb?ixlib=rb-4.0.3",
     date: "2023年10月"
+  },
+  {
+    id: 4,
+    title: "尼泊尔地震灾后重建",
+    description: "为尼泊尔地震灾区提供重建支持，帮助当地居民恢复正常生活。",
+    image: "https://images.unsplash.com/photo-1542898560-e9b701d2e65e?ixlib=rb-4.0.3",
+    date: "2022年9月"
+  },
+  {
+    id: 5,
+    title: "传统医药知识保护项目",
+    description: "记录和保护亚洲传统医药知识，支持相关研究和实践。",
+    image: "https://images.unsplash.com/photo-1567922048821-55a82b61750d?ixlib=rb-4.0.3",
+    date: "2022年5月"
+  },
+  {
+    id: 6,
+    title: "女性工匠赋能计划",
+    description: "为亚洲地区的女性工匠提供培训和创业支持，促进性别平等。",
+    image: "https://images.unsplash.com/photo-1596813215728-cd37f54837b7?ixlib=rb-4.0.3",
+    date: "2022年3月"
   }
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 const Charity = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(charityProjects.length / ITEMS_PER_PAGE);
+  
+  // Calculate projects to display on current page
+  const indexOfLastProject = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstProject = indexOfLastProject - ITEMS_PER_PAGE;
+  const currentProjects = charityProjects.slice(indexOfFirstProject, indexOfLastProject);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="min-h-screen bg-black">
@@ -72,9 +111,9 @@ const Charity = () => {
               </section>
               
               <section>
-                <h2 className="text-2xl font-semibold mt-12 mb-6">近期慈善项目</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {charityProjects.map(project => (
+                <h2 className="text-2xl font-semibold mt-12 mb-6">慈善项目</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {currentProjects.map(project => (
                     <Link 
                       key={project.id} 
                       to={`/charity/projects/${project.id}`} 
@@ -103,14 +142,41 @@ const Charity = () => {
                   ))}
                 </div>
                 
-                <div className="text-center mt-10">
-                  <Link 
-                    to="/charity/projects" 
-                    className="inline-flex items-center px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md transition-colors"
-                  >
-                    查看全部慈善项目 <ArrowRight size={16} className="ml-2" />
-                  </Link>
-                </div>
+                {totalPages > 1 && (
+                  <Pagination className="mt-10">
+                    <PaginationContent>
+                      {currentPage > 1 && (
+                        <PaginationItem>
+                          <PaginationPrevious 
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} 
+                            className="cursor-pointer"
+                          />
+                        </PaginationItem>
+                      )}
+                      
+                      {Array.from({ length: totalPages }).map((_, i) => (
+                        <PaginationItem key={i}>
+                          <PaginationLink
+                            isActive={currentPage === i + 1}
+                            onClick={() => setCurrentPage(i + 1)}
+                            className="cursor-pointer"
+                          >
+                            {i + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ))}
+                      
+                      {currentPage < totalPages && (
+                        <PaginationItem>
+                          <PaginationNext 
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} 
+                            className="cursor-pointer"
+                          />
+                        </PaginationItem>
+                      )}
+                    </PaginationContent>
+                  </Pagination>
+                )}
               </section>
             </div>
           </div>
