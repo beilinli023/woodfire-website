@@ -88,7 +88,10 @@ const SidebarNav = () => {
         onOpenChange={setShowHealthAssessment} 
       />
 
-      <FiveElementsCalculator />
+      <FiveElementsCalculator 
+        open={showFiveElements}
+        onOpenChange={setShowFiveElements}
+      />
     </div>
   );
 };

@@ -10,7 +10,15 @@ import CalculatingStep from './CalculatingStep';
 import ResultStep from './ResultStep';
 import { Element } from './fiveElementsData';
 
-const FiveElementsCalculator = () => {
+interface FiveElementsCalculatorProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const FiveElementsCalculator = ({ 
+  open = false, 
+  onOpenChange 
+}: FiveElementsCalculatorProps) => {
   const [step, setStep] = useState<'intro' | 'input' | 'calculating' | 'result'>('intro');
   const [birthDate, setBirthDate] = useState<Date | undefined>(undefined);
   const [birthHour, setBirthHour] = useState<string>('');
@@ -53,10 +61,26 @@ const FiveElementsCalculator = () => {
     });
   };
 
+  const handleOpenChange = (newOpen: boolean) => {
+    // 当对话框关闭时，重置状态
+    if (!newOpen) {
+      setStep('intro');
+      setBirthDate(undefined);
+      setBirthHour('');
+      setProgress(0);
+      setElement(null);
+    }
+    
+    // 调用父组件的 onOpenChange 回调
+    if (onOpenChange) {
+      onOpenChange(newOpen);
+    }
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <span className="flex items-center cursor-pointer">KEEP LUCKY <span className="ml-2">☘️</span></span>
+        <span className="hidden">KEEP LUCKY <span className="ml-2">☘️</span></span>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[550px]">
         {step === 'intro' && (
