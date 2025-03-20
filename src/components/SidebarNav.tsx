@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useLocation } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ChevronRight, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
