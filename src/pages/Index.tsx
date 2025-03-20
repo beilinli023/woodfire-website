@@ -1,13 +1,14 @@
+
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import FiveElementsSection from '../components/FiveElementsSection';
 import FeaturedSection from '../components/FeaturedSection';
 import TestimonialSection from '../components/TestimonialSection';
-import InstagramSection from '../components/InstagramSection';
+import FollowInstagramSection from '../components/FollowInstagramSection';
 import Footer from '../components/Footer';
 import ProductGrid from '../components/ProductGrid';
-import VerticalNav from '../components/VerticalNav';
+import SidebarNav from '../components/SidebarNav';
 import StorySection from '../components/StorySection';
 import { products } from '../data/productData';
 
@@ -80,7 +81,7 @@ const Index = () => {
       <div className="flex flex-row w-full relative">
         {/* Sidebar Navigation Space */}
         <div className="w-[15%]">
-          <VerticalNav />
+          <SidebarNav />
         </div>
         
         {/* Main Content Area */}
@@ -90,10 +91,7 @@ const Index = () => {
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
           <StorySection />
           <TestimonialSection />
-          {/* Instagram section is the last section before footer - this id is used for navigation positioning */}
-          <div id="instagram-section">
-            <InstagramSection />
-          </div>
+          <FollowInstagramSection />
         </div>
       </div>
       

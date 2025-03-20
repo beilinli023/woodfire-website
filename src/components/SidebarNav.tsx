@@ -32,32 +32,44 @@ const navItems = [
   }
 ];
 
-const VerticalNav = () => {
+const SidebarNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const [isFixed, setIsFixed] = useState(true);
   const [navTop, setNavTop] = useState(80); // Default top position (navbar height)
+  const [shouldFollowScroll, setShouldFollowScroll] = useState(true);
+  const [fixedPosition, setFixedPosition] = useState<number | null>(null);
 
   useEffect(() => {
     const calculatePosition = () => {
       const instagramSection = document.getElementById('instagram-section');
       if (!instagramSection || !navRef.current) return;
 
-      const instagramTop = instagramSection.getBoundingClientRect().top;
-      const instagramMiddle = instagramTop + instagramSection.getBoundingClientRect().height / 2;
+      const instagramRect = instagramSection.getBoundingClientRect();
       const navHeight = navRef.current.offsetHeight;
       
-      // Calculate when the middle of nav would align with the middle of Instagram section
-      const navMiddle = 80 + navHeight / 2; // 80px is the navbar height + half of nav height
+      // Calculate the middle points
+      const instagramMiddle = instagramRect.top + instagramRect.height / 2;
+      const navMiddle = navHeight / 2;
       
-      if (instagramMiddle <= navMiddle) {
-        // We've reached the alignment point, fix the nav at this position
-        setIsFixed(false);
-        setNavTop(instagramMiddle - navHeight / 2);
-      } else {
-        // We're still above the Instagram section, keep nav fixed at top
+      // Navbar height is 80px
+      const navbarHeight = 80;
+      
+      // If scrolling down and nav middle aligns with Instagram middle
+      if (window.scrollY > 0 && instagramMiddle <= navMiddle + navbarHeight) {
+        if (shouldFollowScroll) {
+          // We've reached the alignment point, fix the nav at this position
+          const currentWindowScrollY = window.scrollY;
+          setFixedPosition(currentWindowScrollY);
+          setShouldFollowScroll(false);
+          setIsFixed(true);
+        }
+      } else if (window.scrollY === 0 || instagramMiddle > navMiddle + navbarHeight) {
+        // We're above the Instagram section or at the top, resume normal scroll following
+        setShouldFollowScroll(true);
+        setFixedPosition(null);
         setIsFixed(true);
-        setNavTop(80);
+        setNavTop(navbarHeight);
       }
     };
 
@@ -70,7 +82,7 @@ const VerticalNav = () => {
       window.removeEventListener('scroll', calculatePosition);
       window.removeEventListener('resize', calculatePosition);
     };
-  }, []);
+  }, [shouldFollowScroll]);
 
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -91,10 +103,11 @@ const VerticalNav = () => {
       className="py-8 px-4 w-full"
       style={{ 
         position: isFixed ? 'fixed' : 'absolute',
-        top: `${navTop}px`,
+        top: fixedPosition ? `${navTop}px` : `${navTop}px`,
         left: 0,
         height: 'auto',
-        maxHeight: 'calc(100vh - 80px)'
+        maxHeight: 'calc(100vh - 80px)',
+        transform: fixedPosition ? `translateY(${fixedPosition - window.scrollY}px)` : 'none'
       }}
     >
       <nav className="flex flex-col space-y-6">
@@ -148,4 +161,4 @@ const VerticalNav = () => {
   );
 };
 
-export default VerticalNav;
+export default SidebarNav;
