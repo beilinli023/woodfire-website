@@ -7,12 +7,13 @@ export const products: Product[] = [
     title: "尼泊尔手工金刚结吉祥护身珠",
     category: "护身珠",
     categoryId: 1,
-    price: "¥299",
-    originalPrice: "¥399",
+    price: "299",
+    originalPrice: "399",
     discount: "25%",
     rating: 4.8,
     reviewCount: 128,
     soldCount: 368,
+    createdAt: 1708502400000, // 2024-02-21
     images: [
       "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -131,12 +132,13 @@ export const products: Product[] = [
     title: "喜马拉雅红玛瑙能量手链",
     category: "手链",
     categoryId: 2,
-    price: "¥399",
-    originalPrice: "¥499",
+    price: "399",
+    originalPrice: "499",
     discount: "20%",
     rating: 4.5,
     reviewCount: 85,
     soldCount: 213,
+    createdAt: 1709020800000, // 2024-02-27
     images: [
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
       "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
@@ -158,10 +160,11 @@ export const products: Product[] = [
     title: "藏式五行平衡手串",
     category: "手串",
     categoryId: 3,
-    price: "¥249",
+    price: "249",
     rating: 4.7,
     reviewCount: 63,
     soldCount: 175,
+    createdAt: 1708675200000, // 2024-02-23
     images: [
       "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -182,12 +185,13 @@ export const products: Product[] = [
     title: "尼泊尔圣湖能量水晶",
     category: "水晶",
     categoryId: 4,
-    price: "¥599",
-    originalPrice: "¥899",
+    price: "599",
+    originalPrice: "899",
     discount: "33%",
     rating: 4.9,
     reviewCount: 42,
     soldCount: 89,
+    createdAt: 1711670400000, // 2024-03-29
     images: [
       "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
       "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
@@ -200,6 +204,433 @@ export const products: Product[] = [
       "天然形成，未经人工处理",
       "能量场强大，净化空间",
       "附送专业鉴定证书"
+    ],
+    reviews: []
+  },
+  {
+    id: 5,
+    title: "西藏老山小叶紫檀佛珠",
+    category: "手串",
+    categoryId: 3,
+    price: "799",
+    originalPrice: "999",
+    discount: "20%",
+    rating: 4.8,
+    reviewCount: 56,
+    soldCount: 132,
+    createdAt: 1707552000000, // 2024-02-10
+    images: [
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["棕红色"],
+    sizes: ["8mm", "10mm", "12mm"],
+    highlights: [
+      "选用30年以上老山小叶紫檀",
+      "木质细腻，油性十足",
+      "纯手工打磨，光泽度佳",
+      "佩戴舒适，气韵十足"
+    ],
+    reviews: []
+  },
+  {
+    id: 6,
+    title: "南红玛瑙平安扣吊坠",
+    category: "吊坠",
+    categoryId: 5,
+    price: "1299",
+    rating: 4.9,
+    reviewCount: 38,
+    soldCount: 67,
+    createdAt: 1709452800000, // 2024-03-03
+    images: [
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070"
+    ],
+    colors: ["火焰红", "樱桃红"],
+    sizes: ["3.5cm", "4cm"],
+    highlights: [
+      "选用云南保山顶级南红玛瑙",
+      "纯手工雕刻，工艺精湛",
+      "色泽鲜艳，质地温润",
+      "经高僧开光，镇宅辟邪"
+    ],
+    reviews: []
+  },
+  {
+    id: 7,
+    title: "天然黑曜石太极八卦护身符",
+    category: "护身珠",
+    categoryId: 1,
+    price: "349",
+    rating: 4.6,
+    reviewCount: 72,
+    soldCount: 198,
+    createdAt: 1710057600000, // 2024-03-10
+    images: [
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000"
+    ],
+    colors: ["黑色"],
+    sizes: ["3cm", "4cm", "5cm"],
+    highlights: [
+      "采用天然黑曜石精心雕琢",
+      "八卦太极图案，化煞辟邪",
+      "佩戴舒适，品质卓越",
+      "送礼自用两相宜"
+    ],
+    reviews: []
+  },
+  {
+    id: 8,
+    title: "绿松石藏银手链",
+    category: "手链",
+    categoryId: 2,
+    price: "459",
+    originalPrice: "599",
+    discount: "23%",
+    rating: 4.7,
+    reviewCount: 48,
+    soldCount: 105,
+    createdAt: 1710489600000, // 2024-03-15
+    images: [
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["绿松色", "蓝松色"],
+    sizes: ["17cm", "19cm"],
+    highlights: [
+      "精选优质绿松石，色泽纯正",
+      "传统藏银工艺，手工镶嵌",
+      "具有辟邪保平安功效",
+      "适合各种场合佩戴"
+    ],
+    reviews: []
+  },
+  {
+    id: 9,
+    title: "七脉轮平衡水晶套装",
+    category: "水晶",
+    categoryId: 4,
+    price: "899",
+    originalPrice: "1299",
+    discount: "30%",
+    rating: 4.9,
+    reviewCount: 35,
+    soldCount: 78,
+    createdAt: 1711152000000, // 2024-03-23
+    images: [
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["七彩套装"],
+    highlights: [
+      "七种天然水晶对应七大脉轮",
+      "能量纯净，振动频率稳定",
+      "帮助平衡身心能量",
+      "附带详细使用指南"
+    ],
+    reviews: []
+  },
+  {
+    id: 10,
+    title: "纯银莲花心咒转运戒指",
+    category: "戒指",
+    categoryId: 6,
+    price: "499",
+    rating: 4.8,
+    reviewCount: 42,
+    soldCount: 87,
+    createdAt: 1707120000000, // 2024-02-05
+    images: [
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070"
+    ],
+    sizes: ["6号", "7号", "8号", "9号"],
+    highlights: [
+      "925纯银材质，永不褪色",
+      "精刻莲花心咒，寓意纯净",
+      "可旋转设计，释放能量",
+      "送礼佳品，寓意美好"
+    ],
+    reviews: []
+  },
+  {
+    id: 11,
+    title: "天然琥珀平安锁项链",
+    category: "项链",
+    categoryId: 7,
+    price: "759",
+    originalPrice: "899",
+    discount: "15%",
+    rating: 4.7,
+    reviewCount: 39,
+    soldCount: 91,
+    createdAt: 1711584000000, // 2024-03-28
+    images: [
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["蜜蜡色", "血珀色"],
+    highlights: [
+      "波罗的海天然琥珀，年代久远",
+      "锁型设计，寓意锁住平安福气",
+      "925银链，佩戴舒适",
+      "附赠高档礼盒包装"
+    ],
+    reviews: []
+  },
+  {
+    id: 12,
+    title: "纯天然黄水晶能量手镯",
+    category: "手链",
+    categoryId: 2,
+    price: "329",
+    originalPrice: "399",
+    discount: "18%",
+    rating: 4.6,
+    reviewCount: 53,
+    soldCount: 124,
+    createdAt: 1708848000000, // 2024-02-25
+    images: [
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    sizes: ["16cm", "18cm", "20cm"],
+    highlights: [
+      "纯天然黄水晶，能量充沛",
+      "增强个人魅力与自信",
+      "招财旺运，平衡情绪",
+      "适合商务人士佩戴"
+    ],
+    reviews: []
+  },
+  {
+    id: 13,
+    title: "藏传佛教六字真言手环",
+    category: "手环",
+    categoryId: 8,
+    price: "289",
+    rating: 4.5,
+    reviewCount: 47,
+    soldCount: 113,
+    createdAt: 1711324800000, // 2024-03-25
+    images: [
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["银色", "古铜色"],
+    sizes: ["调节式"],
+    highlights: [
+      "纯手工雕刻六字真言",
+      "传统藏传佛教祝福",
+      "可调节大小，男女通用",
+      "赠送真言卡片及含义解释"
+    ],
+    reviews: []
+  },
+  {
+    id: 14,
+    title: "108颗檀香木佛珠念珠",
+    category: "佛珠",
+    categoryId: 9,
+    price: "199",
+    originalPrice: "259",
+    discount: "23%",
+    rating: 4.8,
+    reviewCount: 68,
+    soldCount: 159,
+    createdAt: 1707811200000, // 2024-02-13
+    images: [
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070"
+    ],
+    sizes: ["8mm", "10mm"],
+    highlights: [
+      "108颗传统佛珠，利于修行",
+      "印度进口老料檀香木",
+      "香气持久，佩戴舒适",
+      "纯手工穿制，经久耐用"
+    ],
+    reviews: []
+  },
+  {
+    id: 15,
+    title: "天然钛晶太阳石吊坠",
+    category: "吊坠",
+    categoryId: 5,
+    price: "659",
+    originalPrice: "799",
+    discount: "18%",
+    rating: 4.7,
+    reviewCount: 32,
+    soldCount: 75,
+    createdAt: 1705132800000, // 2024-01-13
+    images: [
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["金色", "橙色"],
+    sizes: ["中"],
+    highlights: [
+      "巴西进口天然钛晶",
+      "太阳能量石，提升个人魅力",
+      "925银镶嵌，典雅大方",
+      "增强领导力与创造力"
+    ],
+    reviews: []
+  },
+  {
+    id: 16,
+    title: "月光石莲花耳环",
+    category: "耳环",
+    categoryId: 10,
+    price: "429",
+    rating: 4.9,
+    reviewCount: 28,
+    soldCount: 64,
+    createdAt: 1709625600000, // 2024-03-05
+    images: [
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["银色"],
+    highlights: [
+      "斯里兰卡天然月光石",
+      "925银莲花造型，优雅端庄",
+      "增强女性柔和气质",
+      "送女友、妻子理想礼物"
+    ],
+    reviews: []
+  },
+  {
+    id: 17,
+    title: "五行平衡能量香包",
+    category: "香包",
+    categoryId: 11,
+    price: "159",
+    originalPrice: "199",
+    discount: "20%",
+    rating: 4.6,
+    reviewCount: 45,
+    soldCount: 127,
+    createdAt: 1708156800000, // 2024-02-17
+    images: [
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["红色", "紫色", "蓝色", "绿色", "黄色"],
+    highlights: [
+      "五种天然草药配方",
+      "对应五行元素，平衡气场",
+      "纯手工缝制，绣花精美",
+      "可放车内、办公室或家中"
+    ],
+    reviews: []
+  },
+  {
+    id: 18,
+    title: "纯银梵文六字真言戒指",
+    category: "戒指",
+    categoryId: 6,
+    price: "379",
+    rating: 4.7,
+    reviewCount: 37,
+    soldCount: 85,
+    createdAt: 1707292800000, // 2024-02-07
+    images: [
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070"
+    ],
+    sizes: ["6号", "7号", "8号", "9号", "10号"],
+    highlights: [
+      "999纯银打造，质地细腻",
+      "梵文六字真言，祈福平安",
+      "可转动设计，内外双层",
+      "送男友、丈夫理想礼物"
+    ],
+    reviews: []
+  },
+  {
+    id: 19,
+    title: "紫水晶聚财貔貅手串",
+    category: "手串",
+    categoryId: 3,
+    price: "579",
+    originalPrice: "699",
+    discount: "17%",
+    rating: 4.8,
+    reviewCount: 49,
+    soldCount: 118,
+    createdAt: 1711411200000, // 2024-03-26
+    images: [
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    colors: ["紫色"],
+    sizes: ["10mm", "12mm"],
+    highlights: [
+      "优质天然紫水晶，招财转运",
+      "精雕貔貅造型，招财纳福",
+      "开光加持，能量更强",
+      "适合商务人士、创业者佩戴"
+    ],
+    reviews: []
+  },
+  {
+    id: 20,
+    title: "天然草莓晶爱情手镯",
+    category: "手链",
+    categoryId: 2,
+    price: "499",
+    originalPrice: "599",
+    discount: "17%",
+    rating: 4.9,
+    reviewCount: 36,
+    soldCount: 83,
+    createdAt: 1710230400000, // 2024-03-12
+    images: [
+      "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?q=80&w=2000",
+      "https://images.unsplash.com/photo-1611241893603-3c359704e0ee?q=80&w=2070",
+      "https://images.unsplash.com/photo-1602362513863-111e4599537e?q=80&w=2070",
+      "https://images.unsplash.com/photo-1565123409695-7b5ef10a772c?q=80&w=2069"
+    ],
+    sizes: ["16cm", "17cm", "18cm"],
+    highlights: [
+      "全球稀有草莓晶，爱情之石",
+      "增强魅力，吸引爱情",
+      "纯手工打造，每件独一无二",
+      "赠送专业鉴定证书"
     ],
     reviews: []
   }

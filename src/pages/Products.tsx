@@ -1,11 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import SidebarNav from "@/components/SidebarNav";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { products } from "@/data/productData";
-import { Heart, Share2, ShoppingCart, Star, ChevronDown } from "lucide-react";
+import { Heart, Share2, ShoppingCart, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -130,12 +130,6 @@ const Products = () => {
   const [productsCount, setProductsCount] = useState(0);
   const [sortedProducts, setSortedProducts] = useState([...products]);
   
-  const herbProducts = products.filter(p => 
-    p.category === "护身珠" || p.category === "手链" || p.category === "手串");
-  
-  const blessingProducts = products.filter(p => 
-    p.category === "水晶" || !herbProducts.some(hp => hp.id === p.id));
-
   useEffect(() => {
     let result = [...products];
     
@@ -209,139 +203,44 @@ const Products = () => {
                 </div>
               </div>
               
-              <Tabs defaultValue="all" className="w-full">
-                <TabsList className="mb-8 bg-gray-900">
-                  <TabsTrigger value="all">全部商品</TabsTrigger>
-                  <TabsTrigger value="herbs">合香珠</TabsTrigger>
-                  <TabsTrigger value="blessing">祈福配饰</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="all" className="mt-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {sortedProducts.map(product => (
-                      <ProductCard
-                        key={product.id}
-                        id={product.id}
-                        image={product.images[0]}
-                        title={product.title}
-                        price={product.price}
-                        originalPrice={product.originalPrice}
-                        rating={product.rating}
-                        reviewCount={product.reviewCount}
-                        category={product.category}
-                        discount={product.discount}
-                      />
-                    ))}
-                  </div>
-                  
-                  <div className="mt-12">
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem>
-                          <PaginationPrevious href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#" isActive>1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">2</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">3</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationNext href="#" />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="herbs" className="mt-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {herbProducts
-                      .sort((a, b) => {
-                        if (sortOption === "priceAsc") return parseFloat(a.price) - parseFloat(b.price);
-                        if (sortOption === "priceDesc") return parseFloat(b.price) - parseFloat(a.price);
-                        return 0;
-                      })
-                      .map(product => (
-                        <ProductCard
-                          key={product.id}
-                          id={product.id}
-                          image={product.images[0]}
-                          title={product.title}
-                          price={product.price}
-                          originalPrice={product.originalPrice}
-                          rating={product.rating}
-                          reviewCount={product.reviewCount}
-                          category={product.category}
-                          discount={product.discount}
-                        />
-                    ))}
-                  </div>
-                  
-                  <div className="mt-12">
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem>
-                          <PaginationPrevious href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#" isActive>1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationNext href="#" />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="blessing" className="mt-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {blessingProducts
-                      .sort((a, b) => {
-                        if (sortOption === "priceAsc") return parseFloat(a.price) - parseFloat(b.price);
-                        if (sortOption === "priceDesc") return parseFloat(b.price) - parseFloat(a.price);
-                        return 0;
-                      })
-                      .map(product => (
-                        <ProductCard
-                          key={product.id}
-                          id={product.id}
-                          image={product.images[0]}
-                          title={product.title}
-                          price={product.price}
-                          originalPrice={product.originalPrice}
-                          rating={product.rating}
-                          reviewCount={product.reviewCount}
-                          category={product.category}
-                          discount={product.discount}
-                        />
-                    ))}
-                  </div>
-                  
-                  <div className="mt-12">
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem>
-                          <PaginationPrevious href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#" isActive>1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">2</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationNext href="#" />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
-                  </div>
-                </TabsContent>
-              </Tabs>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {sortedProducts.map(product => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    image={product.images[0]}
+                    title={product.title}
+                    price={product.price}
+                    originalPrice={product.originalPrice}
+                    rating={product.rating}
+                    reviewCount={product.reviewCount}
+                    category={product.category}
+                    discount={product.discount}
+                  />
+                ))}
+              </div>
+              
+              <div className="mt-12">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink href="#" isActive>1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink href="#">2</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink href="#">3</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationNext href="#" />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
             </div>
           </div>
         </div>
