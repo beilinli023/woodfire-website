@@ -38,4 +38,5 @@ export interface Product {
   usageGuide?: string[];
   careInstructions?: string[];
   reviews: Review[];
+  createdAt?: number; // 添加可选的 createdAt 属性
 }

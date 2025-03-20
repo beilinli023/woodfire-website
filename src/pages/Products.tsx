@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import SidebarNav from "@/components/SidebarNav";
@@ -26,7 +25,6 @@ import {
 import ProductBadge from "@/components/product/ProductBadge";
 import ProductPrice from "@/components/product/ProductPrice";
 
-// 定义排序选项
 const sortOptions = [
   { value: "featured", label: "推荐商品" },
   { value: "newest", label: "最新上架" },
@@ -35,7 +33,6 @@ const sortOptions = [
   { value: "bestSelling", label: "销量最佳" },
 ];
 
-// 产品卡片组件
 const ProductCard = ({ 
   id, 
   image, 
@@ -67,7 +64,6 @@ const ProductCard = ({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
           
-          {/* Sale badge */}
           {discount && (
             <Badge 
               variant="default" 
@@ -78,7 +74,6 @@ const ProductCard = ({
           )}
         </div>
         
-        {/* Quick actions */}
         <div 
           className={`absolute top-4 right-4 flex flex-col space-y-2 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
@@ -95,7 +90,6 @@ const ProductCard = ({
           </button>
         </div>
 
-        {/* Product info */}
         <div className="p-4">
           <h3 className="text-lg font-medium text-white truncate" title={title}>{title}</h3>
           <div className="mt-2">
@@ -106,7 +100,6 @@ const ProductCard = ({
             />
           </div>
           
-          {/* Rating */}
           <div className="mt-3 flex items-center">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
@@ -137,21 +130,29 @@ const Products = () => {
   const [productsCount, setProductsCount] = useState(0);
   const [sortedProducts, setSortedProducts] = useState([...products]);
   
-  // 根据分类过滤商品
   const herbProducts = products.filter(p => 
     p.category === "护身珠" || p.category === "手链" || p.category === "手串");
   
   const blessingProducts = products.filter(p => 
     p.category === "水晶" || !herbProducts.some(hp => hp.id === p.id));
 
-  // 排序商品
   useEffect(() => {
     let result = [...products];
     
     switch (sortOption) {
       case "newest":
-        // 假设每个产品都有一个 createdAt 字段
-        result = result.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        result = result.sort((a, b) => {
+          if (a.createdAt !== undefined && b.createdAt !== undefined) {
+            return b.createdAt - a.createdAt;
+          }
+          if (a.createdAt !== undefined) {
+            return -1;
+          }
+          if (b.createdAt !== undefined) {
+            return 1;
+          }
+          return b.id - a.id;
+        });
         break;
       case "priceAsc":
         result = result.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -160,18 +161,15 @@ const Products = () => {
         result = result.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         break;
       case "bestSelling":
-        // 假设每个产品都有一个 soldCount 字段
         result = result.sort((a, b) => (b.soldCount || 0) - (a.soldCount || 0));
         break;
       default:
-        // featured - 默认排序
         break;
     }
     
     setSortedProducts(result);
   }, [sortOption]);
 
-  // 更新当前显示的产品数量
   useEffect(() => {
     setProductsCount(products.length);
   }, [products]);
@@ -186,18 +184,15 @@ const Products = () => {
       
       <div className="pt-24 md:pt-32">
         <div className="flex flex-col md:flex-row w-full relative">
-          {/* Sidebar Navigation */}
           <div className="w-full md:w-[15%]">
             <SidebarNav />
           </div>
           
-          {/* Main content */}
           <div className="w-full md:w-[85%] pb-16 px-4">
             <div className="max-w-screen-xl mx-auto">
               <div className="flex justify-between items-center mb-8">
                 <h1 className="text-2xl font-bold">{productsCount} 件产品</h1>
                 
-                {/* Sort Dropdown */}
                 <div className="w-60">
                   <Select value={sortOption} onValueChange={handleSortChange}>
                     <SelectTrigger className="w-full border-gray-700 bg-transparent">
@@ -221,7 +216,6 @@ const Products = () => {
                   <TabsTrigger value="blessing">祈福配饰</TabsTrigger>
                 </TabsList>
                 
-                {/* 全部商品 */}
                 <TabsContent value="all" className="mt-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {sortedProducts.map(product => (
@@ -240,7 +234,6 @@ const Products = () => {
                     ))}
                   </div>
                   
-                  {/* Pagination */}
                   <div className="mt-12">
                     <Pagination>
                       <PaginationContent>
@@ -264,7 +257,6 @@ const Products = () => {
                   </div>
                 </TabsContent>
                 
-                {/* 合香珠 */}
                 <TabsContent value="herbs" className="mt-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {herbProducts
@@ -289,7 +281,6 @@ const Products = () => {
                     ))}
                   </div>
                   
-                  {/* Pagination for herbs */}
                   <div className="mt-12">
                     <Pagination>
                       <PaginationContent>
@@ -307,7 +298,6 @@ const Products = () => {
                   </div>
                 </TabsContent>
                 
-                {/* 祈福配饰 */}
                 <TabsContent value="blessing" className="mt-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {blessingProducts
@@ -332,7 +322,6 @@ const Products = () => {
                     ))}
                   </div>
                   
-                  {/* Pagination for blessing */}
                   <div className="mt-12">
                     <Pagination>
                       <PaginationContent>
