@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLocation } from 'react';
 import { ChevronRight, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
@@ -33,6 +32,7 @@ const navItems = [
 ];
 
 const SidebarNav = () => {
+  const location = useLocation();
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const [isFixed, setIsFixed] = useState(true);
@@ -46,19 +46,17 @@ const SidebarNav = () => {
     const calculatePosition = () => {
       const instagramSection = document.getElementById('instagram-section');
       const footer = document.querySelector('footer');
-      if (!instagramSection || !navRef.current || !footer) return;
+      
+      // If on blessing page or other pages without Instagram section, we still need footer detection
+      if (!footer || !navRef.current) return;
 
-      const instagramRect = instagramSection.getBoundingClientRect();
+      // Get the footer position regardless of page
       const footerRect = footer.getBoundingClientRect();
       const navHeight = navRef.current.offsetHeight;
       
       // Get the current footer top position relative to the viewport
       const currentFooterTop = footerRect.top;
       setFooterTop(currentFooterTop);
-      
-      // Calculate the middle points
-      const instagramMiddle = instagramRect.top + instagramRect.height / 2;
-      const navMiddle = navHeight / 2;
       
       // Navbar height is 80px
       const navbarHeight = 80;
@@ -68,19 +66,32 @@ const SidebarNav = () => {
       const isNearFooter = currentFooterTop <= navBottom + 20; // 20px buffer
       setNearFooter(isNearFooter);
 
-      // If scrolling down and nav middle aligns with Instagram middle
-      if (window.scrollY > 0 && instagramMiddle <= navMiddle + navbarHeight) {
-        if (shouldFollowScroll) {
-          // We've reached the alignment point, fix the nav at this position
-          const currentWindowScrollY = window.scrollY;
-          setFixedPosition(currentWindowScrollY);
-          setShouldFollowScroll(false);
+      // Only do Instagram alignment if the section exists (on home page)
+      if (instagramSection) {
+        const instagramRect = instagramSection.getBoundingClientRect();
+        
+        // Calculate the middle points
+        const instagramMiddle = instagramRect.top + instagramRect.height / 2;
+        const navMiddle = navHeight / 2;
+        
+        // If scrolling down and nav middle aligns with Instagram middle
+        if (window.scrollY > 0 && instagramMiddle <= navMiddle + navbarHeight) {
+          if (shouldFollowScroll) {
+            // We've reached the alignment point, fix the nav at this position
+            const currentWindowScrollY = window.scrollY;
+            setFixedPosition(currentWindowScrollY);
+            setShouldFollowScroll(false);
+            setIsFixed(true);
+          }
+        } else if (window.scrollY === 0 || instagramMiddle > navMiddle + navbarHeight) {
+          // We're above the Instagram section or at the top, resume normal scroll following
+          setShouldFollowScroll(true);
+          setFixedPosition(null);
           setIsFixed(true);
+          setNavTop(navbarHeight);
         }
-      } else if (window.scrollY === 0 || instagramMiddle > navMiddle + navbarHeight) {
-        // We're above the Instagram section or at the top, resume normal scroll following
-        setShouldFollowScroll(true);
-        setFixedPosition(null);
+      } else {
+        // For pages without Instagram section, just keep nav fixed
         setIsFixed(true);
         setNavTop(navbarHeight);
       }
@@ -95,7 +106,7 @@ const SidebarNav = () => {
       window.removeEventListener('scroll', calculatePosition);
       window.removeEventListener('resize', calculatePosition);
     };
-  }, [shouldFollowScroll]);
+  }, [shouldFollowScroll, location.pathname]);
 
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -119,7 +130,8 @@ const SidebarNav = () => {
         top: `calc(${footerTop}px - ${navRef.current?.offsetHeight || 0}px - 20px)`, // 20px buffer
         left: 0,
         height: 'auto',
-        maxHeight: 'calc(100vh - 80px)'
+        maxHeight: 'calc(100vh - 80px)',
+        zIndex: 30 // Ensure sidebar appears above other content
       } as React.CSSProperties;
     }
     
@@ -130,6 +142,7 @@ const SidebarNav = () => {
         left: 0,
         height: 'auto',
         maxHeight: 'calc(100vh - 80px)',
+        zIndex: 30, // Ensure sidebar appears above other content
         transform: fixedPosition ? `translateY(${fixedPosition - window.scrollY}px)` : 'none'
       } as React.CSSProperties;
     }
@@ -138,9 +151,13 @@ const SidebarNav = () => {
       position: 'absolute',
       top: `${navTop}px`,
       left: 0,
-      height: 'auto'
+      height: 'auto',
+      zIndex: 30 // Ensure sidebar appears above other content
     } as React.CSSProperties;
   };
+
+  // Check if we should show the Instagram link based on the current page
+  const showInstagramLink = location.pathname === '/' || location.pathname === '/home';
 
   return (
     <div 
@@ -177,17 +194,19 @@ const SidebarNav = () => {
           )
         ))}
 
-        {/* Instagram anchor link */}
-        <a 
-          href="#instagram-section" 
-          onClick={scrollToInstagram}
-          className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
-        >
-          <span className="flex items-center">
-            关注我们 <span className="ml-2">📸</span>
-          </span>
-          <Instagram className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-        </a>
+        {/* Instagram anchor link - only show on home page */}
+        {showInstagramLink && (
+          <a 
+            href="#instagram-section" 
+            onClick={scrollToInstagram}
+            className="flex items-center justify-between text-white hover:text-white/80 font-medium text-sm lg:text-base transition-all duration-300 group"
+          >
+            <span className="flex items-center">
+              关注我们 <span className="ml-2">📸</span>
+            </span>
+            <Instagram className="ml-2 w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+          </a>
+        )}
       </nav>
 
       {/* Email Subscription Dialog */}
