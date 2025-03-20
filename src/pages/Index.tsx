@@ -10,6 +10,7 @@ import InstagramSection from '../components/InstagramSection';
 import Footer from '../components/Footer';
 import ProductGrid from '../components/ProductGrid';
 import VerticalNav from '../components/VerticalNav';
+import StorySection from '../components/StorySection';
 import { products } from '../data/productData';
 
 const popularProducts = [
@@ -89,6 +90,7 @@ const Index = () => {
           <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
+          <StorySection />
           <TestimonialSection />
           <InstagramSection />
         </div>
