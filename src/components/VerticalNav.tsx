@@ -1,9 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import HealthAssessmentCard from './HealthAssessmentCard';
-import FiveElementsCalculator from './FiveElementsCalculator';
 import EmailSubscriptionDialog from './EmailSubscription/EmailSubscriptionDialog';
 
 const navItems = [
@@ -36,6 +34,30 @@ const navItems = [
 
 const VerticalNav = () => {
   const [showEmailSubscription, setShowEmailSubscription] = useState(false);
+  const [maxHeight, setMaxHeight] = useState('calc(100vh - 80px)');
+
+  useEffect(() => {
+    const adjustNavHeight = () => {
+      // Get the Instagram section and footer positions
+      const instagramSection = document.getElementById('instagram-section');
+      if (instagramSection) {
+        const instagramBottom = instagramSection.getBoundingClientRect().bottom;
+        // Set the max height to ensure it doesn't go beyond the Instagram section
+        const newMaxHeight = `${instagramBottom - 80}px`;
+        setMaxHeight(newMaxHeight);
+      }
+    };
+
+    // Adjust on initial load and window resize
+    adjustNavHeight();
+    window.addEventListener('resize', adjustNavHeight);
+    window.addEventListener('scroll', adjustNavHeight);
+
+    return () => {
+      window.removeEventListener('resize', adjustNavHeight);
+      window.removeEventListener('scroll', adjustNavHeight);
+    };
+  }, []);
 
   const handleKeepMoreClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -43,7 +65,7 @@ const VerticalNav = () => {
   };
 
   return (
-    <div className="h-full py-8 px-4">
+    <div className="h-full py-8 px-4" style={{ maxHeight }}>
       <nav className="flex flex-col space-y-6">
         {/* Regular nav items */}
         {navItems.map((item, index) => (

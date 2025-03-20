@@ -1,10 +1,8 @@
-
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import FiveElementsSection from '../components/FiveElementsSection';
 import FeaturedSection from '../components/FeaturedSection';
-import FeaturedRecommendation from '../components/FeaturedRecommendation';
 import TestimonialSection from '../components/TestimonialSection';
 import InstagramSection from '../components/InstagramSection';
 import Footer from '../components/Footer';
@@ -80,23 +78,26 @@ const Index = () => {
       <Hero />
       
       <div className="flex flex-row w-full relative">
-        {/* Fixed Sidebar Navigation - 15% width, stops before footer */}
+        {/* Fixed Sidebar Navigation with adjusted height to not overlap footer */}
         <div className="w-[15%] fixed left-0 top-[80px] bottom-auto h-auto max-h-[calc(100vh-80px)] overflow-y-auto z-20">
           <VerticalNav />
         </div>
         
-        {/* Main Content Area - 85% width, shifted to the right */}
+        {/* Main Content Area */}
         <div className="w-[85%] ml-[15%]">
           <FiveElementsSection />
           <FeaturedSection />
           <ProductGrid title="热门产品" viewAllLink="/products/popular" products={popularProducts} />
           <StorySection />
           <TestimonialSection />
-          <InstagramSection />
+          {/* Instagram section is the last section before footer */}
+          <div id="instagram-section">
+            <InstagramSection />
+          </div>
         </div>
       </div>
       
-      {/* Full width footer */}
+      {/* Full width footer - separated from the main content */}
       <Footer />
     </div>
   );
